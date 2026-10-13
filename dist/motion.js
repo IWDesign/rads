@@ -39,7 +39,8 @@
           frag.append(word);
         });
         n.replaceWith(frag);
-      } else if (n.nodeType === 1 && n.tagName !== 'BR' && !(skip && n.matches(skip))) walk(n);
+      } else if (n.nodeType === 1 && n.tagName === 'BR') label += ' ';
+      else if (n.nodeType === 1 && !(skip && n.matches(skip))) { walk(n); label += ' '; }
     });
     walk(el);
     el.setAttribute('aria-label', label.replace(/\s+/g, ' ').trim());

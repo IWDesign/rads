@@ -427,3 +427,8 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 /* ---------- Rounded photo corners: What moves you, founder block, Better together ---------- */
 .pathway-media,.founder-portrait,.founder-back,.community-media{border-radius:20px}
 @media(max-width:600px){.pathway-media,.founder-portrait,.founder-back,.community-media{border-radius:14px}}
+
+/* ---------- What moves you: steps sit directly under the philosophy ---------- */
+.pathways{padding-top:0;padding-bottom:90px}
+.pathways .pathway-grid{margin-top:0}
+@media(max-width:600px){.pathways{padding-top:0;padding-bottom:60px}}
