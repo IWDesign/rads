@@ -467,7 +467,7 @@
 
   /* ---------- count-up numbers (hero highlights on load, credentials card on view) ---------- */
   const heroCounters = $$('.hero [data-count]');
-  const creditCounters = $$('.credits [data-count]');
+  const creditCounters = $$('.credits [data-count], .ms-card [data-count]');
   [...heroCounters, ...creditCounters].forEach(el => { el.textContent = '0' + (el.dataset.suffix || ''); });
   function countUp(el) {
     const end = Number(el.dataset.count), suffix = el.dataset.suffix || '', t0 = performance.now();
@@ -485,7 +485,7 @@
     $$('[data-count]', e.target).forEach(countUp);
     creditObserver.unobserve(e.target);
   }), { threshold: .4 });
-  $$('.credits').forEach(c => creditObserver.observe(c));
+  $$('.credits, .ms-card').forEach(c => creditObserver.observe(c));
 
   const start = () => {
     buildHeroEcho();
