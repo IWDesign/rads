@@ -465,10 +465,9 @@
     echo.style.width = h1.offsetWidth + 'px';
   }
 
-  /* ---------- count-up numbers (hero highlights on load, credentials card on view) ---------- */
-  const heroCounters = $$('.hero [data-count]');
+  /* ---------- count-up numbers in credentials and milestones ---------- */
   const creditCounters = $$('.credits [data-count], .ms-card [data-count]');
-  [...heroCounters, ...creditCounters].forEach(el => { el.textContent = '0' + (el.dataset.suffix || ''); });
+  creditCounters.forEach(el => { el.textContent = '0' + (el.dataset.suffix || ''); });
   function countUp(el) {
     const end = Number(el.dataset.count), suffix = el.dataset.suffix || '', t0 = performance.now();
     const tick = now => {
@@ -479,7 +478,6 @@
     requestAnimationFrame(tick);
     setTimeout(() => { el.textContent = end.toLocaleString('en-US') + suffix; }, 4500);
   }
-  const runCounters = () => heroCounters.forEach(countUp);
   const creditObserver = new IntersectionObserver(entries => entries.forEach(e => {
     if (!e.isIntersecting) return;
     $$('[data-count]', e.target).forEach(countUp);
@@ -500,7 +498,6 @@
     setTimeout(() => {
       root.classList.add('-loaded');
       $$('.hero h1').forEach(h => h.classList.add('-inview'));
-      setTimeout(runCounters, 1900);
     }, 60);
   };
   Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), new Promise(r => setTimeout(r, 1800))]).then(start);

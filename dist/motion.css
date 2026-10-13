@@ -292,26 +292,9 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .js-split .rp{clip-path:none;opacity:var(--r,1)}
 }
 
-/* ---------- Hero highlights strip ---------- */
+/* ---------- Hero layout ---------- */
 .hero.hero-split{flex-direction:column;justify-content:center;gap:clamp(30px,4vh,52px)}
 .hero.hero-split .hero-media{max-width:min(720px,calc(100svh - 270px))}
-.hero-stats{position:relative;z-index:5;width:100%;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);
-  background:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.65);border-radius:20px;
-  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 30px 60px -44px rgba(41,35,47,.5)}
-.hero-stat{display:flex;align-items:center;gap:22px;padding:24px clamp(22px,3.4vw,52px)}
-.hero-stat+.hero-stat{border-left:1px solid var(--line)}
-.hero-stat>svg{flex:none}
-.hero-stat strong{display:block;font:400 clamp(30px,3vw,42px)/1 var(--serif);letter-spacing:-.03em;margin-bottom:6px}
-.hero-stat span{font-size:14px;line-height:1.5;color:#5b525e;display:block;max-width:230px}
-.hero-stat strong span{display:inline;font:inherit;color:inherit;max-width:none}
-.js-split .hero-stats{opacity:0;transition:opacity 1.6s var(--f-cubic) 1.9s}
-.js-split.-loaded .hero-stats{opacity:1}
-@media(max-width:900px){
-  .hero.hero-split .hero-media{max-width:min(640px,100%)}
-  .hero-stats{grid-template-columns:1fr}
-  .hero-stat+.hero-stat{border-left:0;border-top:1px solid var(--line)}
-  .hero-stat{padding:18px 24px}
-}
 .hero.hero-split{padding-top:100px;padding-bottom:34px;gap:clamp(22px,3.4vh,36px)}
 .hero.hero-split .hero-media{max-width:min(720px,calc(100svh - 300px))}
 @media(max-width:900px){.hero.hero-split{padding-top:118px}.hero.hero-split .hero-media{max-width:min(640px,100%)}}
@@ -339,7 +322,7 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .founder .credits{margin-top:56px}
 }
 
-/* ---------- Testimonials: photo mosaic with overlapping quote cards ---------- */
+/* ---------- Testimonials: three staggered cards with crossfading reviews ---------- */
 .testimonials{padding-top:130px;padding-bottom:130px}
 .t-head{text-align:center;margin-bottom:70px}
 .t-head .eyebrow{margin-bottom:32px}
@@ -350,9 +333,11 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .t-photo:hover img{scale:1.05}
 .t-photo-1{grid-column:1/6}.t-photo-2{grid-column:6/9}.t-photo-3{grid-column:9/13}
 .t-photo-4{grid-column:1/5}.t-photo-5{grid-column:5/9}.t-photo-6{grid-column:9/13}
-.t-cards{position:absolute;inset:0;pointer-events:none}
-.t-card{position:absolute;margin:0;pointer-events:auto;background:rgba(250,246,240,.97);border-radius:16px;padding:26px 28px 22px;
-  box-shadow:0 40px 70px -40px rgba(41,35,47,.55)}
+.t-cards{position:absolute;z-index:2;inset:0;pointer-events:none}
+.t-card{position:absolute;box-sizing:border-box;margin:0;pointer-events:auto;background:rgba(250,246,240,.97);border-radius:16px;padding:26px 28px 22px;
+  box-shadow:0 40px 70px -40px rgba(41,35,47,.55);opacity:1;transition:opacity .55s ease}
+.t-card.is-changing{opacity:0}
+.t-card.is-placeholder{border:1px dashed #8e7e9a;background:rgba(250,246,240,.92)}
 .t-card-1{left:2.2%;top:30%;width:25%}
 .t-card-2{left:61%;top:5%;width:25.5%}
 .t-card-3{left:50.5%;top:53%;width:27.5%}
@@ -369,6 +354,9 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .t-cards{position:static;display:grid;gap:14px;margin-top:14px}
   .t-card,.t-card-1,.t-card-2,.t-card-3{position:static;width:auto;padding:26px 24px 22px}
   .t-card p{font-size:14.5px;line-height:1.75}
+}
+@media(prefers-reduced-motion:reduce){
+  .t-card{transition:none}
 }
 
 /* ---------- Offerings: all rows visible, photo wipes in on scroll ---------- */
@@ -418,10 +406,8 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .t-wrap{max-width:none;width:100%}
 .t-photos{gap:0;grid-auto-rows:clamp(240px,27vw,480px)}
 .t-photo{border-radius:0}
-.t-card-1{left:5%}
 @media(max-width:900px){
   .t-photos{grid-auto-rows:clamp(160px,38vw,260px)}
-  .t-cards{padding:0 6%}
 }
 
 /* ---------- Rounded photo corners: What moves you, founder block, Better together ---------- */
@@ -447,10 +433,40 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .hero-lead{margin-bottom:30px}
   .hero-facts{margin-top:36px;padding-top:16px}
   .hero-foot{margin-top:22px}
-  .hero-stat{padding-top:20px;padding-bottom:20px}
 }
+
+/* ---------- Founder introduction ---------- */
+.founder-copy .founder-name{font:400 clamp(58px,6vw,94px)/.88 var(--serif);letter-spacing:-.055em;margin:0 0 22px;text-wrap:balance}
+.founder-copy .founder-name em{font-weight:300;color:#71567b}
+.founder-copy .founder-roles{font-size:11px;line-height:1.5;letter-spacing:2.4px;font-weight:600;margin:0 0 34px;color:#705b6e}
+.founder-story p{font-size:15px;line-height:1.8;max-width:490px;margin:0 0 20px}
+.founder-story p:last-child{margin-bottom:0}
+.founder-copy .founder-story+.underline-button{margin-top:32px}
+@media(max-width:800px){.founder-copy .founder-name{font-size:clamp(52px,7vw,72px)}.founder-story p{font-size:14px}}
+@media(max-width:600px){.founder-copy .founder-name{font-size:clamp(58px,13vw,78px)}.founder-copy .founder-roles{font-size:10px;letter-spacing:1.8px;margin-bottom:28px}}
 
 /* ---------- Offerings: cards span the full content width on wide screens ---------- */
 .offering-list{max-width:none;width:100%}
 .offering-media{aspect-ratio:5/6}
 @media(max-width:900px){.offering-media{aspect-ratio:4/3}}
+
+/* ---------- Credentials card: keep three columns on tablets ---------- */
+@media(min-width:601px) and (max-width:800px){
+  .credits{grid-template-columns:repeat(3,1fr)}
+  .credit+.credit{border-left:1px solid var(--line);border-top:0}
+  .credit{padding:30px 14px 26px;gap:12px}
+  .credit>span{font-size:10px;letter-spacing:1.4px}
+}
+
+/* ---------- One space: shared disciplines statement and homepage CTA ---------- */
+.one-space{padding:85px 0 100px;text-align:center}
+.one-space .grand-title{margin-bottom:30px}
+.one-space-intro{max-width:430px;margin:0 auto;font-size:15px;line-height:1.8;color:#c9bdce}
+.one-space-cta{padding-bottom:110px}
+.one-space-cta .light-button{margin-top:36px}
+@media(max-width:600px){
+  .one-space{padding:55px 0 80px}
+  .one-space .grand-title{font-size:15vw}
+  .one-space-intro{padding:0 6%;font-size:14px}
+  .one-space-cta .light-button{margin-top:30px}
+}
