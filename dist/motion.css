@@ -291,3 +291,139 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 @media (min-width:900px) and (min-height:700px){
   .js-split .rp{clip-path:none;opacity:var(--r,1)}
 }
+
+/* ---------- Hero highlights strip ---------- */
+.hero.hero-split{flex-direction:column;justify-content:center;gap:clamp(30px,4vh,52px)}
+.hero.hero-split .hero-media{max-width:min(720px,calc(100svh - 270px))}
+.hero-stats{position:relative;z-index:5;width:100%;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);
+  background:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.65);border-radius:20px;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 30px 60px -44px rgba(41,35,47,.5)}
+.hero-stat{display:flex;align-items:center;gap:22px;padding:24px clamp(22px,3.4vw,52px)}
+.hero-stat+.hero-stat{border-left:1px solid var(--line)}
+.hero-stat>svg{flex:none}
+.hero-stat strong{display:block;font:400 clamp(30px,3vw,42px)/1 var(--serif);letter-spacing:-.03em;margin-bottom:6px}
+.hero-stat span{font-size:14px;line-height:1.5;color:#5b525e;display:block;max-width:230px}
+.hero-stat strong span{display:inline;font:inherit;color:inherit;max-width:none}
+.js-split .hero-stats{opacity:0;transition:opacity 1.6s var(--f-cubic) 1.9s}
+.js-split.-loaded .hero-stats{opacity:1}
+@media(max-width:900px){
+  .hero.hero-split .hero-media{max-width:min(640px,100%)}
+  .hero-stats{grid-template-columns:1fr}
+  .hero-stat+.hero-stat{border-left:0;border-top:1px solid var(--line)}
+  .hero-stat{padding:18px 24px}
+}
+.hero.hero-split{padding-top:100px;padding-bottom:34px;gap:clamp(22px,3.4vh,36px)}
+.hero.hero-split .hero-media{max-width:min(720px,calc(100svh - 300px))}
+@media(max-width:900px){.hero.hero-split{padding-top:118px}.hero.hero-split .hero-media{max-width:min(640px,100%)}}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero.hero-split .hero-media{max-width:min(640px,100%);justify-self:center}
+}
+
+/* ---------- Founder credentials card ---------- */
+.credits{display:grid;grid-template-columns:repeat(3,1fr);max-width:1000px;margin:0 auto;border-radius:20px;overflow:hidden;
+  background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.7);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:0 30px 60px -44px rgba(41,35,47,.5)}
+.credit{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:38px 24px 34px}
+.credit+.credit{border-left:1px solid var(--line)}
+.credit strong{font:400 clamp(44px,5vw,68px)/1 var(--serif);letter-spacing:-.03em}
+.credit strong span{display:inline;font:inherit;letter-spacing:inherit;text-transform:none;color:inherit;max-width:none}
+.credit>span{font-size:11px;letter-spacing:1.8px;line-height:1.8;text-transform:uppercase;color:#5b525e}
+.credits-band{padding:70px 6% 20px}
+.founder .credits{margin-top:90px}
+@media(max-width:800px){
+  .credits{grid-template-columns:1fr}
+  .credit+.credit{border-left:0;border-top:1px solid var(--line)}
+  .credit{padding:28px 20px 26px;gap:12px}
+  .credits-band{padding:44px 6% 10px}
+  .founder .credits{margin-top:56px}
+}
+
+/* ---------- Testimonials: photo mosaic with overlapping quote cards ---------- */
+.testimonials{padding-top:130px;padding-bottom:130px}
+.t-head{text-align:center;margin-bottom:70px}
+.t-head .eyebrow{margin-bottom:32px}
+.t-wrap{position:relative;max-width:1320px;margin:0 auto}
+.t-photos{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(220px,25vw,360px);gap:10px}
+.t-photo{margin:0;overflow:hidden;border-radius:6px;background:#cfc3d3}
+.t-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:scale 1.4s var(--f-cubic)}
+.t-photo:hover img{scale:1.05}
+.t-photo-1{grid-column:1/6}.t-photo-2{grid-column:6/9}.t-photo-3{grid-column:9/13}
+.t-photo-4{grid-column:1/5}.t-photo-5{grid-column:5/9}.t-photo-6{grid-column:9/13}
+.t-cards{position:absolute;inset:0;pointer-events:none}
+.t-card{position:absolute;margin:0;pointer-events:auto;background:rgba(250,246,240,.97);border-radius:16px;padding:26px 28px 22px;
+  box-shadow:0 40px 70px -40px rgba(41,35,47,.55)}
+.t-card-1{left:2.2%;top:30%;width:25%}
+.t-card-2{left:61%;top:5%;width:25.5%}
+.t-card-3{left:50.5%;top:53%;width:27.5%}
+.t-mark{display:block;font:400 54px/.7 var(--serif);color:#8e7e9a;margin-bottom:12px}
+.t-card blockquote{margin:0}
+.t-card p{margin:0;font-size:14.5px;line-height:1.75;color:#3a3340}
+.t-card figcaption{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;font-weight:500;letter-spacing:1.6px;color:#7d6a92}
+@media(max-width:1100px){.t-card{padding:20px 22px 18px}.t-card p{font-size:13px;line-height:1.65}.t-mark{font-size:44px}}
+@media(max-width:900px){
+  .testimonials{padding-top:90px;padding-bottom:80px}
+  .t-head{margin-bottom:44px}
+  .t-photos{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(160px,38vw,260px)}
+  .t-photo-1,.t-photo-2,.t-photo-3,.t-photo-4,.t-photo-5,.t-photo-6{grid-column:auto}
+  .t-cards{position:static;display:grid;gap:14px;margin-top:14px}
+  .t-card,.t-card-1,.t-card-2,.t-card-3{position:static;width:auto;padding:26px 24px 22px}
+  .t-card p{font-size:14.5px;line-height:1.75}
+}
+
+/* ---------- Offerings: all rows visible, photo wipes in on scroll ---------- */
+.offering-trigger{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:center;padding:30px 0 22px}
+.offering-name{display:block;font:30px/1.05 var(--serif);letter-spacing:-.5px}
+.offering-name small{display:inline-block;margin-left:10px;font:9px var(--sans);letter-spacing:1px;color:#75687c;vertical-align:middle}
+.offering-by{display:block;margin-top:9px;font:italic 18px/1.2 var(--serif);color:#6b606c}
+.offering-head{margin:0;font-weight:inherit}
+.offering-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;padding:0 0 44px 48px}
+.offering-media{margin:0;overflow:hidden;border-radius:10px;aspect-ratio:3/2;background:#cfc3d3}
+.offering-media img{display:block;width:100%;height:100%;object-fit:cover;transition:scale 1.4s var(--f-cubic)}
+.offering:hover .offering-media img{scale:1.05}
+.offering-text p{margin:0 0 20px;font-size:14px;line-height:1.8}
+.js-split .offering-media{clip-path:inset(0 100% 0 0)}
+.js-split .offering.visible .offering-media{clip-path:inset(0);transition:clip-path 1.3s var(--f-cubic) .15s}
+.js-split .offering-media img{scale:1.22}
+.js-split .offering.visible .offering-media img{scale:1;transition:scale 2.2s var(--f-cubic) .15s}
+.js-split .offering.visible:hover .offering-media img{scale:1.05;transition:scale 1.4s var(--f-cubic)}
+.js-split .offering-text{opacity:0}
+.js-split .offering.visible .offering-text{opacity:1;transition:opacity 1.1s var(--f-cubic) .55s}
+@media(max-width:800px){
+  .offering-inner{grid-template-columns:1fr;gap:20px;padding:0 0 34px 0}
+  .offering-by{font-size:16px}
+}
+
+/* ---------- Offerings: three cards in one row ---------- */
+.offerings{display:block;padding-top:130px;padding-bottom:130px}
+.offerings-intro{margin-bottom:0}
+.offering-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,40px);padding-top:70px;max-width:1320px}
+.offering{display:flex;flex-direction:column;border-top:0}
+.offering:last-child{border-bottom:0}
+.offering-panel,.offering-clip,.offering-inner{display:contents}
+.offering-media{order:1;aspect-ratio:4/5;border-radius:12px}
+.offering-head{order:2}
+.offering-text{order:3}
+.offering-trigger{grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:26px 0 10px}
+.offering-number{padding-top:9px}
+.offering-text p{max-width:360px}
+@media(max-width:900px){
+  .offering-list{grid-template-columns:1fr;max-width:560px;padding-top:50px;gap:56px}
+  .offering-media{aspect-ratio:4/3}
+}
+
+/* ---------- Testimonials: full-bleed mosaic ---------- */
+.testimonials{padding-left:0;padding-right:0}
+.t-head{padding:0 8%}
+.t-wrap{max-width:none;width:100%}
+.t-photos{gap:0;grid-auto-rows:clamp(240px,27vw,480px)}
+.t-photo{border-radius:0}
+.t-card-1{left:5%}
+@media(max-width:900px){
+  .t-photos{grid-auto-rows:clamp(160px,38vw,260px)}
+  .t-cards{padding:0 6%}
+}
+
+/* ---------- Rounded photo corners: What moves you, founder block, Better together ---------- */
+.pathway-media,.founder-portrait,.founder-back,.community-media{border-radius:20px}
+@media(max-width:600px){.pathway-media,.founder-portrait,.founder-back,.community-media{border-radius:14px}}
