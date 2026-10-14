@@ -470,3 +470,32 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .one-space-intro{padding:0 6%;font-size:14px}
   .one-space-cta .light-button{margin-top:30px}
 }
+
+
+/* ---------- Philosophy: prominent title + quoted line ---------- */
+.intro{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:0;padding-top:110px;padding-bottom:120px}
+.intro>.intro-title{display:flex;align-items:center;gap:22px;margin:0 0 48px;font:600 clamp(14px,1.45vw,19px)/1 var(--sans);letter-spacing:.34em;color:#5f4a78}
+.intro>.intro-title:before,.intro>.intro-title:after{content:'';width:clamp(30px,6vw,90px);height:1px;background:currentColor;opacity:.55}
+.intro .editorial{font-size:clamp(46px,7vw,108px);max-width:13em;margin:0 auto}
+.intro .section-star{position:static;margin-top:46px;font-size:48px}
+@media(max-width:600px){.intro{padding-top:80px;padding-bottom:80px}.intro>.intro-title{letter-spacing:.24em;gap:14px;margin-bottom:34px}.intro .section-star{margin-top:34px;font-size:36px}}
+
+/* ---------- Testimonials: a quote under every photo ---------- */
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;width:100%}
+.t-item{margin:0;display:flex;flex-direction:column;background:rgba(250,246,240,.9);border-bottom:1px solid var(--line)}
+.t-item .t-photo{aspect-ratio:4/3;overflow:hidden;border-radius:0}
+.t-item .t-card{position:static;width:auto;flex:1;display:flex;flex-direction:column;margin:0;border-radius:0;border:0;box-shadow:none;background:transparent;
+  -webkit-backdrop-filter:none;backdrop-filter:none;padding:26px 32px 28px}
+.t-item .t-mark{margin-bottom:10px}
+.t-item .t-card figcaption{margin-top:auto;padding-top:20px}
+.t-item .t-card[data-placeholder] blockquote p{opacity:.55}
+@media(max-width:1000px){.t-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.t-grid{grid-template-columns:1fr}.t-item .t-card{padding:22px 24px 24px}}
+
+/* ---------- Closing CTA: readable button on the dark section ---------- */
+.dark-section .light-button{color:var(--plum)}
+.dark-section .light-button .button-mark{color:#8e7e9a}
+
+/* ---------- Founder: align the name's left edge with the byline ---------- */
+.founder-copy .founder-name{margin-left:-.036em}
+.founder-copy .founder-roles{margin-left:0;padding-left:0}

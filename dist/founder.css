@@ -53,52 +53,6 @@
 }
 @media(prefers-reduced-motion:reduce){.f-title,.f-stage,.f-card,.f-halo{translate:none;scale:none}}
 @media(max-width:600px){.f-stage{margin-top:22px}}
-/* ---------- Milestones: the climb from city level to the world stage ---------- */
-.milestones{padding:90px 0 140px}
-.ms-head{text-align:center;padding:0 8%}
-.ms-head .grand-title{margin:54px 0 18px}
-.ms-head p{max-width:470px;margin:0 auto;font-size:15px;line-height:1.8;color:#c9bdce}
-.ms-path{list-style:none;position:relative;max-width:1180px;margin:90px auto 0;padding:0 5%}
-.ms-path:before,.ms-path:after{content:'';position:absolute;left:50%;top:0;width:1px;translate:-.5px 0}
-.ms-path:before{bottom:0;background:rgba(238,232,221,.16)}
-.ms-path:after{height:calc(var(--progress,1)*100%);background:linear-gradient(180deg,#b8a5cc,#e0a487)}
-.ms-item{position:relative;display:grid;grid-template-columns:1fr 72px 1fr;align-items:center}
-.ms-item+.ms-item{margin-top:-64px}
-.ms-item.ms-world{margin-top:40px}
-.ms-node{grid-column:2;grid-row:1;justify-self:center;width:16px;height:16px;border-radius:50%;background:var(--plum);border:2px solid #b8a5cc;box-shadow:0 0 0 8px var(--plum);z-index:1}
-.ms-card{grid-row:1;width:min(100%,470px);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:30px 32px 28px;
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.ms-left .ms-card{grid-column:1;justify-self:end}
-.ms-right .ms-card{grid-column:3;justify-self:start}
-.ms-tag{color:#b8a5cc;font-size:10px;letter-spacing:2px}
-.ms-stat{display:flex;align-items:baseline;gap:14px;margin:16px 0 12px}
-.ms-num{font:400 clamp(58px,6vw,88px)/.9 var(--serif);letter-spacing:-.04em;color:var(--ivory)}
-.ms-gold{color:#e3c070}.ms-silver{color:#c9c4d2}.ms-peach{color:#e8a98a}
-.ms-unit{font-size:10px;letter-spacing:1.8px;color:#b9adbf}
-.ms-card h3{font:400 28px/1.1 var(--serif);letter-spacing:-.5px;margin:0 0 12px}
-.ms-card p{font-size:14px;line-height:1.75;color:#cdc2d2;margin:0}
-.ms-world .ms-card{grid-column:1/-1;justify-self:center;width:min(100%,780px);text-align:center;padding:56px 44px 50px;
-  background:radial-gradient(ellipse at 50% 0%,rgba(224,164,135,.26),rgba(184,165,204,.12) 55%,rgba(255,255,255,.04));border-color:rgba(232,169,138,.4)}
-.ms-world .ms-node{display:none}
-.ms-world .ms-stat{justify-content:center}
-.ms-world .ms-num{font-size:clamp(80px,10vw,150px)}
-.ms-world .ms-card h3{font-size:clamp(30px,3.4vw,46px)}
-.ms-world .ms-card p{max-width:480px;margin:0 auto;font-size:15px}
-@media(max-width:800px){
-  .milestones{padding:60px 0 90px}
-  .ms-path{margin-top:56px;padding:0 6%}
-  .ms-path:before,.ms-path:after{left:calc(6% + 11px)}
-  .ms-item{grid-template-columns:36px 1fr}
-  .ms-item+.ms-item{margin-top:18px}
-  .ms-node{grid-column:1;justify-self:start;margin-left:4px;grid-row:1}
-  .ms-left .ms-card,.ms-right .ms-card,.ms-world .ms-card{grid-column:2;justify-self:stretch;width:auto}
-  .ms-card{padding:24px 22px 22px}
-  .ms-item.ms-world{margin-top:26px}
-  .ms-world .ms-card{padding:36px 24px 32px;text-align:left}
-  .ms-world .ms-stat{justify-content:flex-start}
-  .ms-world .ms-node{display:block}
-}
-
 /* ---------- Notable performances: year ledger ---------- */
 .perf{padding-top:120px;padding-bottom:110px}
 .perf-head,.learn-head{display:grid;grid-template-columns:1.3fr .7fr;gap:8%;align-items:end;max-width:1300px;margin:0 auto 70px}
@@ -163,3 +117,51 @@
 .perf-featured:hover{padding-left:38px}
 @media(max-width:700px){.perf-featured{margin:10px -12px;padding:24px 12px}}
 
+
+
+/* ---------- Hero cards: text card (left) + rounded photo (right) ---------- */
+.f-card-text{display:flex;align-items:center;aspect-ratio:auto;min-height:0;padding:30px 28px;border-radius:22px;
+  background:rgba(250,246,240,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 30px 60px -34px rgba(36,26,46,.45)}
+.f-card-text p{margin:0;font:400 clamp(15px,1.28vw,19px)/1.5 var(--serif);letter-spacing:-.1px;color:#2f2933}
+.f-card-right{border-radius:22px}
+.f-bottom{display:flex;justify-content:center;max-width:none;margin-top:44px}
+@media(max-width:900px){
+  .f-card-right{display:none}
+  .f-card-text{position:static;width:auto;max-width:560px;rotate:none;translate:none;margin:34px auto 0;padding:26px 24px}
+  .f-card-text p{font-size:19px}
+}
+
+/* ---------- Achievements: grid with medals ---------- */
+.milestones{padding:90px 0 130px}
+.ms-grid{list-style:none;margin:80px auto 0;padding:0 5%;max-width:1280px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ms-card{position:relative;display:flex;flex-direction:column;padding:26px 26px 28px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .6s var(--f-cubic),background .6s var(--f-cubic),border-color .6s var(--f-cubic)}
+.ms-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
+.ms-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}
+.ms-icon{flex:none;filter:drop-shadow(0 10px 16px rgba(0,0,0,.35))}
+.ms-tag{color:#b8a5cc;font-size:10px;letter-spacing:2px;text-align:right;padding-top:4px}
+.ms-stat{display:flex;align-items:baseline;gap:12px;margin:0 0 10px}
+.ms-num{font:400 clamp(44px,4.2vw,64px)/.9 var(--serif);letter-spacing:-.04em;color:var(--ivory)}
+.ms-num span{font:inherit;letter-spacing:inherit;text-transform:none;color:inherit;max-width:none;display:inline}
+.ms-unit,.ms-prize{font-size:10px;letter-spacing:1.8px;color:#b9adbf}
+.ms-prize{display:block;margin:0 0 10px;color:#e3c070}
+.ms-silver .ms-prize,.ms-yoga .ms-prize{color:#cfcad8}
+.ms-card h3{font:400 clamp(22px,2vw,28px)/1.1 var(--serif);letter-spacing:-.5px;margin:0 0 12px}
+.ms-card p{font-size:13.5px;line-height:1.7;color:#cdc2d2;margin:0}
+.ms-big{grid-column:span 2;grid-row:span 2;justify-content:flex-end;padding:40px 40px 42px;
+  background:radial-gradient(ellipse at 20% 0%,rgba(224,164,135,.3),rgba(184,165,204,.12) 60%,rgba(255,255,255,.04));border-color:rgba(232,169,138,.42)}
+.ms-big .ms-top{margin-bottom:auto}
+.ms-big .ms-icon{width:96px;height:88px}
+.ms-big .ms-num{font-size:clamp(80px,9vw,140px);color:#e8a98a}
+.ms-big h3{font-size:clamp(30px,3vw,44px)}
+.ms-big p{font-size:15px;max-width:420px}
+@media(max-width:1000px){
+  .ms-grid{grid-template-columns:repeat(2,1fr)}
+  .ms-big{grid-column:1/-1;grid-row:auto}
+}
+@media(max-width:600px){
+  .milestones{padding:60px 0 90px}
+  .ms-grid{grid-template-columns:1fr;margin-top:50px;padding:0 6%}
+  .ms-big{padding:30px 26px}
+}
