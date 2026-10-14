@@ -165,3 +165,10 @@
   .ms-grid{grid-template-columns:1fr;margin-top:50px;padding:0 6%}
   .ms-big{padding:30px 26px}
 }
+
+/* ---------- Achievements heading + description (centred) ---------- */
+.ms-head{text-align:center;padding:0 8%}
+.ms-head .grand-title{margin:54px 0 20px}
+.ms-head p{max-width:470px;margin:0 auto;font-size:15px;line-height:1.8;color:#c9bdce}
+.perf-row{grid-template-columns:46px 1fr}
+@media(max-width:700px){.perf-row{grid-template-columns:34px 1fr}}
