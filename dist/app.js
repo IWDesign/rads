@@ -74,7 +74,32 @@ document.querySelectorAll('.book-trigger, [data-goal], [data-style]').forEach(bu
 }));
 goal.addEventListener('change', updateSelection);
 style.addEventListener('change', updateSelection);
-document.querySelector('#class-finder').addEventListener('submit', event => event.preventDefault());
+const classFinder = document.querySelector('#class-finder');
+classFinder.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (classFinder.elements['bot-field'].value) return; // honeypot: bots fill this in
+  const status = classFinder.querySelector('.form-status');
+  const send = classFinder.querySelector('[type="submit"]');
+  send.disabled = true;
+  status.textContent = 'Sending\u2026';
+  try {
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(classFinder)).toString()
+    });
+    if (!response.ok) throw new Error('Request failed: ' + response.status);
+    status.textContent = '';
+    classFinder.classList.add('is-sent');
+    classFinder.querySelector('.form-success').focus();
+  } catch (error) {
+    send.disabled = false;
+    status.textContent = 'Sorry, that did not send. Please try again, or use the booking page link below.';
+  }
+});
+bookingDialog.addEventListener('close', () => {
+  if (classFinder.classList.contains('is-sent')) { classFinder.reset(); classFinder.classList.remove('is-sent'); classFinder.querySelector('[type="submit"]').disabled = false; updateSelection(); }
+});
 const filmVideo = document.querySelector('#film-video');
 const filmPlaceholderParts = document.querySelectorAll('#film-dialog .film-placeholder > .media-center, #film-dialog .film-placeholder > .slot-bottom');
 document.querySelectorAll('[data-film]').forEach(button => button.addEventListener('click', event => {
