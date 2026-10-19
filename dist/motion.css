@@ -337,7 +337,6 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .t-card{position:absolute;box-sizing:border-box;margin:0;pointer-events:auto;background:rgba(250,246,240,.97);border-radius:16px;padding:26px 28px 22px;
   box-shadow:0 40px 70px -40px rgba(41,35,47,.55);opacity:1;transition:opacity .55s ease}
 .t-card.is-changing{opacity:0}
-.t-card.is-placeholder{border:1px dashed #8e7e9a;background:rgba(250,246,240,.92)}
 .t-card-1{left:2.2%;top:30%;width:25%}
 .t-card-2{left:61%;top:5%;width:25.5%}
 .t-card-3{left:50.5%;top:53%;width:27.5%}
@@ -488,7 +487,6 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   -webkit-backdrop-filter:none;backdrop-filter:none;padding:26px 32px 28px}
 .t-item .t-mark{margin-bottom:10px}
 .t-item .t-card figcaption{margin-top:auto;padding-top:20px}
-.t-item .t-card[data-placeholder] blockquote p{opacity:.55}
 @media(max-width:1000px){.t-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.t-grid{grid-template-columns:1fr}.t-item .t-card{padding:22px 24px 24px}}
 

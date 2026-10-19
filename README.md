@@ -34,7 +34,7 @@ Insert `<img>` or `<video>` within the corresponding slot, keep its reserved dim
 
 ## Booking
 
-The class finder retains the selected discipline and goal while the page is open. It does not collect personal data or submit requests. The final link opens the existing RADS booking page at https://www.nrityaritika.com/blank-1. Selection transfer to that external form is not supported; the interface explicitly asks visitors to confirm their preferences with the studio.
+The class finder is a Netlify form (`class-enquiry`): it collects name, email, optional phone and message plus the chosen goal and style, and posts to Netlify Forms. Enquiries appear in the Netlify dashboard under Forms.
 
 ## Accessibility and motion
 

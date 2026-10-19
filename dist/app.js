@@ -94,7 +94,7 @@ classFinder.addEventListener('submit', async event => {
     classFinder.querySelector('.form-success').focus();
   } catch (error) {
     send.disabled = false;
-    status.textContent = 'Sorry, that did not send. Please try again, or use the booking page link below.';
+    status.textContent = 'Sorry, that did not send. Please check your connection and try again.';
   }
 });
 bookingDialog.addEventListener('close', () => {
@@ -114,34 +114,6 @@ filmDialog?.addEventListener('close', () => { filmVideo.pause(); filmVideo.remov
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo && reducedMotion.matches) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
 document.querySelector('#year').textContent = new Date().getFullYear();
-
-const testimonialsSection = document.querySelector('#love');
-const testimonialSlots = [...document.querySelectorAll('.t-cards .t-card')];
-const testimonialTemplate = document.querySelector('#testimonial-placeholders');
-if (testimonialsSection && testimonialSlots.length && testimonialTemplate) {
-  const entries = [...testimonialSlots, ...testimonialTemplate.content.querySelectorAll('.t-card')].map(card => ({
-    quote: card.querySelector('blockquote p').textContent,
-    name: card.querySelector('figcaption').textContent,
-    placeholder: card.hasAttribute('data-placeholder')
-  }));
-  let nextEntry = testimonialSlots.length;
-  let nextSlot = 0;
-  window.setInterval(() => {
-    const bounds = testimonialsSection.getBoundingClientRect();
-    if (bounds.top >= innerHeight || bounds.bottom <= 0 || document.hidden || reducedMotion.matches || testimonialSlots.some(card => card.matches(':hover'))) return;
-    const card = testimonialSlots[nextSlot];
-    const entry = entries[nextEntry];
-    card.classList.add('is-changing');
-    window.setTimeout(() => {
-      card.querySelector('blockquote p').textContent = entry.quote;
-      card.querySelector('figcaption').textContent = entry.name;
-      card.classList.toggle('is-placeholder', entry.placeholder);
-      card.classList.remove('is-changing');
-    }, 550);
-    nextEntry = (nextEntry + 1) % entries.length;
-    nextSlot = (nextSlot + 1) % testimonialSlots.length;
-  }, 3200);
-}
 
 // "Find your rhythm" tiles: scroll the pinned scene to the form, or (phones / reduced motion) open the class finder pre-selected.
 document.querySelectorAll('.rt[data-form]').forEach(tile => tile.addEventListener('click', event => {
