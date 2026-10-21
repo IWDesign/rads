@@ -598,7 +598,7 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   box-shadow:0 26px 46px -16px rgba(75,51,112,.95),inset 0 1px 0 rgba(255,255,255,.3)}
 .light-button:hover:before,.dark-button:hover:before{transform:translateX(120%) skewX(-20deg)}
 .light-button:active,.dark-button:active{transform:translateY(-1px)}
-.light-button .button-mark,.dark-button>span[aria-hidden]{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+.light-button .button-mark,.dark-button>span[aria-hidden]:not(.roll){flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
   background:rgba(255,255,255,.18);color:var(--gold);font-size:15px;transition:transform .6s var(--f-cubic),background .3s}
 .light-button:hover .button-mark,.dark-button:hover>span[aria-hidden]{transform:rotate(90deg) scale(1.08);background:rgba(255,255,255,.3)}
 .hero-ctas .light-button,.service-body .light-button,.one-space-cta .light-button{color:#fff}
