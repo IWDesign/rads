@@ -659,3 +659,4 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .more-row .underline-button{grid-column:1/-1}
   .more-row:hover{padding-left:0;padding-right:0}
 }
+.services .grand-title em,.more-intro h2 em{color:var(--grape)}
