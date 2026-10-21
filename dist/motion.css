@@ -660,3 +660,11 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .more-row:hover{padding-left:0;padding-right:0}
 }
 .services .grand-title em,.more-intro h2 em{color:var(--grape)}
+
+/* ---------- Contact details ---------- */
+.footer-contact{display:flex;flex-wrap:wrap;align-items:center;gap:14px 38px;padding:0 0 40px}
+.footer-contact .eyebrow{color:var(--lavender);margin-right:6px}
+.footer-contact a{font:300 clamp(22px,2.4vw,32px)/1.1 var(--serif);letter-spacing:-.02em;border-bottom:1px solid rgba(238,232,221,.3);padding-bottom:4px;transition:border-color .3s,color .3s}
+.footer-contact a:hover{color:#fff;border-bottom-color:var(--gold)}
+.booking-dialog form>small a{text-decoration:underline;white-space:nowrap}
+@media(max-width:640px){.footer-contact{flex-direction:column;align-items:flex-start;gap:14px}.footer-contact a{font-size:24px;word-break:break-all}}
