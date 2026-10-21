@@ -600,7 +600,7 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .light-button:active,.dark-button:active{transform:translateY(-1px)}
 .light-button .button-mark,.dark-button>span[aria-hidden]:not(.roll){flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
   background:rgba(255,255,255,.18);color:var(--gold);font-size:15px;transition:transform .6s var(--f-cubic),background .3s}
-.light-button:hover .button-mark,.dark-button:hover>span[aria-hidden]{transform:rotate(90deg) scale(1.08);background:rgba(255,255,255,.3)}
+.light-button:hover .button-mark,.dark-button:hover>span[aria-hidden]:not(.roll){transform:rotate(90deg) scale(1.08);background:rgba(255,255,255,.3)}
 .hero-ctas .light-button,.service-body .light-button,.one-space-cta .light-button{color:#fff}
 .hero-ctas .light-button:hover{background:linear-gradient(115deg,var(--grape-deep),var(--grape) 55%,var(--grape-glow))}
 .hero-ctas .button-mark,.hero-ctas .light-button .button-mark{color:var(--gold)}
