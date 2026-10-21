@@ -61,14 +61,14 @@
 .perf-head p,.learn-head p{font-size:14px;line-height:1.8;max-width:330px;margin:0 0 8px;justify-self:end;color:#4a4150}
 .perf-ledger{max-width:1300px;margin:0 auto}
 .perf-year{display:grid;grid-template-columns:230px 1fr;gap:40px;border-top:1px solid var(--line);padding:34px 0 40px}
-.perf-yr{position:sticky;top:120px;align-self:start;margin:0;font:300 clamp(64px,7.5vw,112px)/.9 var(--serif);letter-spacing:-.05em;color:#8e7e9a}
+.perf-yr{position:sticky;top:120px;align-self:start;margin:0;font:300 clamp(64px,7.5vw,112px)/.9 var(--serif);letter-spacing:-.05em;color:#6a5385}
 .perf-list{list-style:none;margin:0;padding:0}
 .perf-row{position:relative;display:grid;grid-template-columns:46px 1fr auto;gap:18px;align-items:center;padding:24px 22px 24px 0;border-bottom:1px solid var(--line);transition:padding .5s var(--f-cubic),background .5s var(--f-cubic)}
 .perf-row:last-child{border-bottom:0}
-.perf-idx{font:400 13px var(--serif);letter-spacing:.5px;color:#8e7e9a}
+.perf-idx{font:400 13px var(--serif);letter-spacing:.5px;color:#6a5385}
 .perf-row h4{margin:0;font:400 clamp(26px,2.8vw,38px)/1.05 var(--serif);letter-spacing:-.8px}
 .perf-row p{margin:8px 0 0;font-size:13px;color:#6b606c}
-.perf-tag{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#8e6a9e;text-align:right;white-space:nowrap}
+.perf-tag{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:#6a4a85;text-align:right;white-space:nowrap}
 .perf-row:hover{padding-left:16px}
 .perf-featured{margin:10px 0;padding:30px 28px 30px 24px;border-radius:16px;border-bottom:0;
   background:linear-gradient(120deg,rgba(184,165,204,.32),rgba(232,185,160,.3));border:1px solid rgba(255,255,255,.6)}
@@ -80,13 +80,13 @@
 /* ---------- Academic journey ---------- */
 .learn{padding-top:30px;padding-bottom:130px}
 .learn-path{list-style:none;margin:0 auto;padding:0;max-width:1300px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative}
-.learn-path:before{content:'';position:absolute;left:12%;right:12%;top:63px;height:1px;background:linear-gradient(90deg,#b8a5cc,#e0a487)}
+.learn-path:before{content:'';position:absolute;left:12%;right:12%;top:63px;height:1px;background:linear-gradient(90deg,#a58bc6,#e0a487)}
 .learn-card{position:relative;text-align:center;padding:0 10px 38px}
 .learn-lens{position:relative;z-index:1;width:126px;height:126px;margin:0 auto 30px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:radial-gradient(circle at 35% 30%,#fff,#efe6f3 70%);border:1px solid var(--line);box-shadow:0 22px 44px -26px rgba(41,35,47,.5),0 0 0 9px rgba(244,239,232,.9)}
+  background:radial-gradient(circle at 35% 30%,#fff,#efe6f3 70%);border:1px solid var(--line);box-shadow:0 22px 44px -26px rgba(38,26,56,.5),0 0 0 9px rgba(244,239,232,.9)}
 .learn-lens strong{font:400 34px/1 var(--serif);letter-spacing:-.03em;color:#6f5a87}
 .learn-lens small{margin-top:6px;font-size:9px;letter-spacing:1.8px;color:#8a7f8e}
-.learn-tag{display:block;font-size:10px;letter-spacing:2px;color:#8e6a9e;margin-bottom:14px}
+.learn-tag{display:block;font-size:10px;letter-spacing:2px;color:#6a4a85;margin-bottom:14px}
 .learn-card h3{margin:0 0 10px;font:400 clamp(32px,3.2vw,46px)/1 var(--serif);letter-spacing:-1px}
 .learn-card p{margin:0 auto 22px;font-size:14px;line-height:1.7;color:#4a4150;max-width:260px}
 .learn-uni{display:block;font:500 12px var(--sans);letter-spacing:1.4px;text-transform:uppercase}
@@ -132,43 +132,5 @@
   .f-card-text p{font-size:19px}
 }
 
-/* ---------- Achievements: grid with medals ---------- */
-.milestones{padding:90px 0 130px}
-.ms-grid{list-style:none;margin:80px auto 0;padding:0 5%;max-width:1280px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.ms-card{position:relative;display:flex;flex-direction:column;padding:26px 26px 28px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .6s var(--f-cubic),background .6s var(--f-cubic),border-color .6s var(--f-cubic)}
-.ms-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
-.ms-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}
-.ms-icon{flex:none;filter:drop-shadow(0 10px 16px rgba(0,0,0,.35))}
-.ms-tag{color:#b8a5cc;font-size:10px;letter-spacing:2px;text-align:right;padding-top:4px}
-.ms-stat{display:flex;align-items:baseline;gap:12px;margin:0 0 10px}
-.ms-num{font:400 clamp(44px,4.2vw,64px)/.9 var(--serif);letter-spacing:-.04em;color:var(--ivory)}
-.ms-num span{font:inherit;letter-spacing:inherit;text-transform:none;color:inherit;max-width:none;display:inline}
-.ms-unit,.ms-prize{font-size:10px;letter-spacing:1.8px;color:#b9adbf}
-.ms-prize{display:block;margin:0 0 10px;color:#e3c070}
-.ms-silver .ms-prize,.ms-yoga .ms-prize{color:#cfcad8}
-.ms-card h3{font:400 clamp(22px,2vw,28px)/1.1 var(--serif);letter-spacing:-.5px;margin:0 0 12px}
-.ms-card p{font-size:13.5px;line-height:1.7;color:#cdc2d2;margin:0}
-.ms-big{grid-column:span 2;grid-row:span 2;justify-content:flex-end;padding:40px 40px 42px;
-  background:radial-gradient(ellipse at 20% 0%,rgba(224,164,135,.3),rgba(184,165,204,.12) 60%,rgba(255,255,255,.04));border-color:rgba(232,169,138,.42)}
-.ms-big .ms-top{margin-bottom:auto}
-.ms-big .ms-icon{width:96px;height:88px}
-.ms-big .ms-num{font-size:clamp(80px,9vw,140px);color:#e8a98a}
-.ms-big h3{font-size:clamp(30px,3vw,44px)}
-.ms-big p{font-size:15px;max-width:420px}
-@media(max-width:1000px){
-  .ms-grid{grid-template-columns:repeat(2,1fr)}
-  .ms-big{grid-column:1/-1;grid-row:auto}
-}
-@media(max-width:600px){
-  .milestones{padding:60px 0 90px}
-  .ms-grid{grid-template-columns:1fr;margin-top:50px;padding:0 6%}
-  .ms-big{padding:30px 26px}
-}
-
-/* ---------- Achievements heading + description (centred) ---------- */
-.ms-head{text-align:center;padding:0 8%}
-.ms-head .grand-title{margin:54px 0 20px}
-.ms-head p{max-width:470px;margin:0 auto;font-size:15px;line-height:1.8;color:#c9bdce}
 .perf-row{grid-template-columns:46px 1fr}
 @media(max-width:700px){.perf-row{grid-template-columns:34px 1fr}}

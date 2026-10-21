@@ -34,7 +34,6 @@ reducedMotion.addEventListener('change', () => {
 });
 updateScroll();
 
-const menuDialog = document.querySelector('#menu-dialog');
 const bookingDialog = document.querySelector('#booking-dialog');
 const filmDialog = document.querySelector('#film-dialog');
 let returnFocus = null;
@@ -55,8 +54,6 @@ document.querySelectorAll('dialog').forEach(dialog => {
     if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
   });
 });
-document.querySelector('.menu-trigger').addEventListener('click', event => openDialog(menuDialog, event.currentTarget));
-menuDialog.querySelectorAll('nav a').forEach(link => link.addEventListener('click', () => menuDialog.close()));
 
 const goal = document.querySelector('#goal');
 const style = document.querySelector('#style');
@@ -72,6 +69,7 @@ document.querySelectorAll('.book-trigger, [data-goal], [data-style]').forEach(bu
   updateSelection();
   openDialog(bookingDialog, event.currentTarget);
 }));
+document.querySelectorAll('.price-marquee').forEach(el => el.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); el.click(); } }));
 goal.addEventListener('change', updateSelection);
 style.addEventListener('change', updateSelection);
 const classFinder = document.querySelector('#class-finder');

@@ -1,0 +1,38 @@
+/* ---------- Achievements: grid with medals ---------- */
+.milestones{padding:90px 0 130px}
+.ms-grid{list-style:none;margin:80px auto 0;padding:0 5%;max-width:1280px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ms-card{position:relative;display:flex;flex-direction:column;padding:26px 26px 28px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .6s var(--f-cubic),background .6s var(--f-cubic),border-color .6s var(--f-cubic)}
+.ms-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
+.ms-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}
+.ms-icon{flex:none;filter:drop-shadow(0 10px 16px rgba(0,0,0,.35))}
+.ms-tag{color:#a58bc6;font-size:10px;letter-spacing:2px;text-align:right;padding-top:4px}
+.ms-stat{display:flex;align-items:baseline;gap:12px;margin:0 0 10px}
+.ms-num{font:400 clamp(44px,4.2vw,64px)/.9 var(--serif);letter-spacing:-.04em;color:var(--ivory)}
+.ms-num span{font:inherit;letter-spacing:inherit;text-transform:none;color:inherit;max-width:none;display:inline}
+.ms-unit,.ms-prize{font-size:10px;letter-spacing:1.8px;color:#b9adbf}
+.ms-prize{display:block;margin:0 0 10px;color:#e3c070}
+.ms-silver .ms-prize,.ms-yoga .ms-prize{color:#cfcad8}
+.ms-card h3{font:400 clamp(22px,2vw,28px)/1.1 var(--serif);letter-spacing:-.5px;margin:0 0 12px}
+.ms-card p{font-size:13.5px;line-height:1.7;color:#cdc2d2;margin:0}
+.ms-big{grid-column:span 2;grid-row:span 2;justify-content:flex-end;padding:40px 40px 42px;
+  background:radial-gradient(ellipse at 20% 0%,rgba(224,164,135,.3),rgba(184,165,204,.12) 60%,rgba(255,255,255,.04));border-color:rgba(232,169,138,.42)}
+.ms-big .ms-top{margin-bottom:auto}
+.ms-big .ms-icon{width:96px;height:88px}
+.ms-big .ms-num{font-size:clamp(80px,9vw,140px);color:#e8a98a}
+.ms-big h3{font-size:clamp(30px,3vw,44px)}
+.ms-big p{font-size:15px;max-width:420px}
+@media(max-width:1000px){
+  .ms-grid{grid-template-columns:repeat(2,1fr)}
+  .ms-big{grid-column:1/-1;grid-row:auto}
+}
+@media(max-width:600px){
+  .milestones{padding:60px 0 90px}
+  .ms-grid{grid-template-columns:1fr;margin-top:50px;padding:0 6%}
+  .ms-big{padding:30px 26px}
+}
+
+/* ---------- Achievements heading + description (centred) ---------- */
+.ms-head{text-align:center;padding:0 8%}
+.ms-head .grand-title{margin:54px 0 20px}
+.ms-head p{max-width:470px;margin:0 auto;font-size:15px;line-height:1.8;color:#cdbfe0}
