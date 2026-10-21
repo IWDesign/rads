@@ -628,3 +628,34 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .booking-dialog button.dark-button{border-radius:999px;justify-content:space-between;padding:19px 22px 19px 32px}
 @media(max-width:600px){.light-button,.dark-button{min-width:0}}
 .hero-ctas .light-button{background:linear-gradient(115deg,var(--grape-deep),var(--grape) 55%,var(--grape-glow))}
+
+
+/* ---------- "And there is more": compact editorial list (distinct from the cards above) ---------- */
+.more{display:grid;grid-template-columns:minmax(240px,.8fr) 1.7fr;gap:clamp(40px,7vw,120px);align-items:start;max-width:1320px;margin:0 auto;padding:110px 8% 120px}
+.more-intro{position:sticky;top:130px}
+.more-intro h2{font:400 clamp(46px,5vw,76px)/.95 var(--serif);letter-spacing:-.045em;margin:22px 0 20px}
+.more-intro h2 em{font-weight:300;color:var(--grape-glow)}
+.more-intro p{margin:0;max-width:260px;font-size:14px;line-height:1.75;color:#6b606c}
+.more-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.more-row{display:grid;grid-template-columns:132px 1fr;align-items:center;column-gap:clamp(22px,3vw,44px);row-gap:20px;padding:30px 0;border-bottom:1px solid var(--line);transition:padding .6s var(--f-cubic),background .6s var(--f-cubic)}
+.more-row:hover{padding-left:16px;padding-right:16px;background:rgba(123,91,168,.08)}
+.more-row .underline-button{grid-column:2;justify-self:start}
+.more-thumb{margin:0;width:132px;height:132px;border-radius:50%;overflow:hidden;background:#b9a8c9;box-shadow:0 18px 34px -20px rgba(38,26,56,.7);transition:transform .8s var(--f-cubic),border-radius .8s var(--f-cubic)}
+.more-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.more-row:hover .more-thumb{transform:rotate(-6deg) scale(1.05);border-radius:36%}
+.more-no{display:block;font:400 12px var(--serif);letter-spacing:.6px;color:var(--grape-glow);margin-bottom:8px}
+.more-text h3{font:400 clamp(26px,2.5vw,36px)/1.05 var(--serif);letter-spacing:-.03em;margin:0 0 10px}
+.more-text h3 em{font-weight:300}
+.more-text p{margin:0;font-size:14px;line-height:1.7;color:#5b5061;max-width:470px}
+.more-soon{display:inline-block;vertical-align:middle;margin-left:10px;padding:6px 12px;border-radius:999px;background:linear-gradient(120deg,var(--grape),var(--grape-glow));color:#fff;font:600 9px var(--sans);letter-spacing:1.4px;text-transform:uppercase}
+@media(max-width:1000px){
+  .more{grid-template-columns:1fr;padding:80px 8% 90px;gap:40px}
+  .more-intro{position:static}
+  .more-intro h2 br{display:none}
+}
+@media(max-width:640px){
+  .more-row{grid-template-columns:84px 1fr;row-gap:18px;padding:26px 0}
+  .more-thumb{width:84px;height:84px}
+  .more-row .underline-button{grid-column:1/-1}
+  .more-row:hover{padding-left:0;padding-right:0}
+}
