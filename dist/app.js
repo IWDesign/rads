@@ -120,39 +120,3 @@ document.querySelectorAll('.rt[data-form]').forEach(tile => tile.addEventListene
   updateSelection();
   openDialog(bookingDialog, event.currentTarget);
 }));
-
-
-/* Reviews: pick a name to read their words; advances by itself */
-(() => {
-  const tq = document.querySelector('#tq');
-  if (!tq) return;
-  const tabs = [...tq.querySelectorAll('.tq-name')];
-  const panels = [...tq.querySelectorAll('.tq-quote')];
-  const progress = tq.querySelector('.tq-progress i');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const DURATION = 9000;
-  let current = 0, timer = null, paused = false;
-  tq.classList.add('is-ready');
-  function show(i, user) {
-    current = (i + tabs.length) % tabs.length;
-    tabs.forEach((t, k) => { t.classList.toggle('is-active', k === current); t.setAttribute('aria-selected', k === current); t.tabIndex = k === current ? 0 : -1; });
-    panels.forEach((p, k) => p.classList.toggle('is-active', k === current));
-    if (progress) { progress.style.animation = 'none'; void progress.offsetWidth; progress.style.animation = reduced ? 'none' : ''; }
-    schedule();
-  }
-  function schedule() {
-    clearTimeout(timer);
-    if (reduced) return;
-    timer = setTimeout(() => { if (paused) schedule(); else show(current + 1); }, DURATION);
-  }
-  tabs.forEach((t, k) => {
-    t.addEventListener('click', () => show(k, true));
-    t.addEventListener('keydown', e => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); show(current + 1, true); tabs[current].focus(); }
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1, true); tabs[current].focus(); }
-    });
-  });
-  tq.addEventListener('mouseenter', () => { paused = true; tq.classList.add('is-paused'); });
-  tq.addEventListener('mouseleave', () => { paused = false; tq.classList.remove('is-paused'); });
-  show(0);
-})();
