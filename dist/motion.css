@@ -668,3 +668,63 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .footer-contact a:hover{color:#fff;border-bottom-color:var(--gold)}
 .booking-dialog form>small a{text-decoration:underline;white-space:nowrap}
 @media(max-width:640px){.footer-contact{flex-direction:column;align-items:flex-start;gap:14px}.footer-contact a{font-size:24px;word-break:break-all}}
+
+
+/* =====================================================================
+   Round 3: clearer nav, 3 private-session cards, name-led testimonials,
+   prominent Book of Records card
+   ===================================================================== */
+/* nav: frosted pill so the links read on every background */
+.desktop-nav{gap:6px;padding:6px;border-radius:999px;background:rgba(250,246,240,.82);border:1px solid rgba(38,26,56,.14);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 12px 30px -18px rgba(38,26,56,.55)}
+.desktop-nav a{color:var(--grape-deep);font-size:13px;font-weight:600;letter-spacing:1.2px;padding:11px 22px;border-radius:999px;transition:background .3s,color .3s}
+.desktop-nav a:after{display:none}
+.desktop-nav a:hover,.desktop-nav a[aria-current="page"]{background:var(--grape);color:#fff}
+.site-header .text-button{background:rgba(250,246,240,.86);font-size:12px}
+@media(max-width:900px){.desktop-nav{gap:2px;padding:4px;margin:0 0 0 auto}.desktop-nav a{font-size:11px;padding:9px 14px}}
+@media(max-width:700px){.desktop-nav{order:3;width:auto;margin:6px auto 0;justify-content:center}.desktop-nav a{font-size:12px;padding:10px 20px}}
+
+/* private sessions: three cards */
+.service-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1380px}
+.service-card{aspect-ratio:3/4.3}
+.service-price strong{font-size:clamp(54px,5vw,80px)}
+.service-body h3{font-size:clamp(28px,2.6vw,40px)}
+.service-body{padding:0 clamp(22px,2.2vw,34px) clamp(24px,2.4vw,34px)}
+.service-body p{font-size:14px}
+@media(max-width:1000px){.service-grid{grid-template-columns:1fr;max-width:560px}.service-card{aspect-ratio:4/5.2}}
+
+/* testimonials: name-led soft cards, no photos */
+.t-grid2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+.t-card2{padding:clamp(30px,3vw,44px);border-radius:26px;display:flex;flex-direction:column;gap:18px;border:1px solid rgba(38,26,56,.08);
+  box-shadow:0 26px 50px -36px rgba(38,26,56,.5);transition:transform .6s var(--f-cubic),box-shadow .6s var(--f-cubic)}
+.t-card2:hover{transform:translateY(-6px);box-shadow:0 36px 60px -34px rgba(75,51,112,.55)}
+.t-card2 h3{margin:0;font:400 clamp(36px,3.6vw,54px)/1 var(--serif);letter-spacing:-.04em;color:var(--grape-deep)}
+.t-card2 h3 em{font-weight:300;color:var(--grape-glow)}
+.t-card2 p{margin:0;font-size:14.5px;line-height:1.75;color:#4d4352}
+.t-lav{background:linear-gradient(160deg,#ece3f6,#f6f0fa)}
+.t-peach{background:linear-gradient(160deg,#f8e6da,#fbf1e9)}
+.t-blush{background:linear-gradient(160deg,#f6e1e6,#faeff1)}
+.t-sage{background:linear-gradient(160deg,#e3ecde,#f1f5ee)}
+@media(max-width:1000px){.t-grid2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.t-grid2{grid-template-columns:1fr}}
+
+/* Book of Records: second feature card beside the Guinness record */
+.ms-ibr.ms-big{background:radial-gradient(ellipse at 20% 0%,rgba(165,139,198,.38),rgba(123,91,168,.14) 60%,rgba(255,255,255,.04));border-color:rgba(165,139,198,.5)}
+.ms-ibr.ms-big .ms-num{color:#cdbfe0}
+.ms-ibr.ms-big .ms-icon{width:96px;height:88px}
+.ms-ibr .ms-ibr-logo{width:clamp(110px,10vw,148px);height:auto;flex:none;filter:drop-shadow(0 10px 18px rgba(0,0,0,.4))}
+.ms-college{grid-column:span 2}
+@media(max-width:1000px){.ms-college{grid-column:auto}}
+
+
+/* ---------- Testimonials v2: staggered name-led cards with monogram ---------- */
+.t-grid2{align-items:start;gap:26px}
+.t-card2{position:relative;overflow:hidden;gap:16px;padding:clamp(30px,3vw,46px) clamp(26px,2.6vw,40px) clamp(32px,3vw,46px)}
+.t-card2:after{content:'\201C';position:absolute;right:22px;top:-14px;font:400 150px/1 var(--serif);color:rgba(75,51,112,.1);pointer-events:none}
+.t-initial{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--grape-deep),var(--grape-glow));color:#fff;font:400 26px/1 var(--serif);box-shadow:0 12px 24px -12px rgba(75,51,112,.7)}
+.t-card2 h3{font-size:clamp(40px,4vw,60px);margin-top:6px}
+.t-card2 p{font-size:14px;color:#5b5061}
+@media(min-width:1001px){.t-card2:nth-child(3n+2){margin-top:46px}}
+
+/* Book of Records logo (circular) */
+.ms-ibr .ms-ibr-logo{border-radius:50%;box-shadow:0 14px 28px -10px rgba(0,0,0,.55)}
