@@ -824,3 +824,8 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .rv-foot{margin-top:auto;padding-top:4px;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#6a5385;font-weight:600}
 .rv-foot i{font-style:normal;color:#c79a3c;margin-right:6px}
 .rv-card:hover{transform:translateY(-8px) rotate(-.4deg)}
+/* reviews source line: prominent pill */
+.rv-head .eyebrow{display:inline-flex;align-items:center;gap:12px;margin:0 auto 26px;padding:13px 26px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:2.2px;color:#fff;
+  background:linear-gradient(115deg,var(--grape-deep),var(--grape) 60%,var(--grape-glow));box-shadow:0 16px 32px -16px rgba(75,51,112,.85),inset 0 1px 0 rgba(255,255,255,.25)}
+.rv-head .eyebrow:before,.rv-head .eyebrow:after{content:'\2733';color:#e3c070;font-size:14px;letter-spacing:0}
+@media(max-width:560px){.rv-head .eyebrow{font-size:11px;letter-spacing:1.4px;padding:11px 18px;gap:8px}}
