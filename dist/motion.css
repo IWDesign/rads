@@ -728,3 +728,54 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 
 /* Book of Records logo (circular) */
 .ms-ibr .ms-ibr-logo{border-radius:50%;box-shadow:0 14px 28px -10px rgba(0,0,0,.55)}
+
+
+/* =====================================================================
+   Reviews v3: immersive stage, big names on the left, one voice at a time
+   ===================================================================== */
+.tq-section{position:relative;isolation:isolate;overflow:hidden;color:var(--ivory);padding:120px 0 130px;
+  background:linear-gradient(160deg,#4b3370 0%,#35244f 55%,#261a38 100%)}
+.tq-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:.34;filter:saturate(.8)}
+.tq-veil{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 75% 40%,rgba(123,91,168,.35),transparent 60%),linear-gradient(180deg,rgba(38,26,56,.72),rgba(38,26,56,.3) 40%,rgba(38,26,56,.85))}
+.tq-section .t-head{padding:0 8%;margin-bottom:70px}
+.tq-section .t-head .eyebrow{color:#e3c070}
+.tq-section .t-head .grand-title{margin-top:28px}
+.tq-section .t-head .grand-title em{color:#cdbfe0}
+.tq{display:grid;grid-template-columns:minmax(260px,.9fr) 1.4fr;gap:clamp(30px,6vw,110px);max-width:1320px;margin:0 auto;padding:0 clamp(24px,6vw,80px);align-items:center}
+.tq-names{display:flex;flex-direction:column;gap:2px}
+.tq-name{display:flex;align-items:baseline;gap:16px;text-align:left;background:none;color:inherit;padding:8px 0;opacity:.34;transition:opacity .5s var(--f-cubic),transform .5s var(--f-cubic)}
+.tq-name:hover,.tq-name:focus-visible{opacity:.75}
+.tq-name.is-active{opacity:1;transform:translateX(14px)}
+.tq-no{font:400 12px var(--serif);letter-spacing:1px;color:#e3c070;min-width:22px}
+.tq-label{font:300 clamp(44px,5.6vw,92px)/.95 var(--serif);letter-spacing:-.05em}
+.tq-name.is-active .tq-label{font-style:italic}
+.tq-stage{position:relative;min-height:380px;padding:clamp(30px,3.4vw,52px);border-radius:28px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 50px 90px -50px rgba(0,0,0,.8);display:flex;flex-direction:column;justify-content:center}
+.tq-glyph{position:absolute;top:-6px;left:26px;font:400 190px/1 var(--serif);color:rgba(227,192,112,.28);pointer-events:none}
+.tq-quote{margin:0;position:relative}
+.tq.is-ready .tq-quote{position:absolute;left:clamp(30px,3.4vw,52px);right:clamp(30px,3.4vw,52px);top:50%;opacity:0;visibility:hidden;translate:0 -46%;transition:opacity .7s var(--f-cubic),translate .9s var(--f-cubic),visibility 0s .7s}
+.tq.is-ready .tq-quote.is-active{opacity:1;visibility:visible;translate:0 -50%;transition:opacity .9s var(--f-cubic) .15s,translate 1s var(--f-cubic) .15s,visibility 0s}
+.tq-quote blockquote{margin:0}
+.tq-quote p{margin:0;font:300 clamp(20px,2.05vw,30px)/1.5 var(--serif);letter-spacing:-.01em;color:#f4eefa}
+.tq-quote figcaption{margin-top:26px;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#cdbfe0}
+.tq-quote figcaption span{color:#e3c070;font-weight:600}
+.tq-progress{position:absolute;left:clamp(30px,3.4vw,52px);right:clamp(30px,3.4vw,52px);bottom:24px;height:2px;background:rgba(255,255,255,.14);border-radius:2px;overflow:hidden}
+.tq-progress i{display:block;height:100%;width:100%;transform-origin:left;background:linear-gradient(90deg,#e3c070,#fff);animation:tq-bar 9s linear forwards}
+.tq.is-paused .tq-progress i{animation-play-state:paused}
+@keyframes tq-bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:1000px){
+  .tq{grid-template-columns:1fr;gap:34px}
+  .tq-names{flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tq-names::-webkit-scrollbar{display:none}
+  .tq-name{flex:none;padding:10px 20px;border:1px solid rgba(255,255,255,.28);border-radius:999px;opacity:.7}
+  .tq-name.is-active{transform:none;opacity:1;background:#fff;color:var(--grape-deep)}
+  .tq-no{display:none}
+  .tq-label{font-size:22px;letter-spacing:-.01em}
+  .tq-stage{min-height:0;padding:44px 26px 54px}
+  .tq.is-ready .tq-stage{min-height:460px}
+  .tq-glyph{font-size:130px;top:0;left:18px}
+}
+@media(max-width:560px){.tq.is-ready .tq-stage{min-height:540px}.tq-quote p{font-size:19px}}
+@media(prefers-reduced-motion:reduce){.tq-progress{display:none}}
+.tq-quote blockquote{padding-top:42px}
+.tq-glyph{font-size:160px;top:-14px}
