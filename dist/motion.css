@@ -811,7 +811,7 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .rv-card{position:relative;overflow:hidden;isolation:isolate;gap:16px;padding:28px 30px 24px;border-radius:26px;border:1px solid rgba(255,255,255,.7);
   box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 26px 44px -30px rgba(38,26,56,.55),0 2px 6px rgba(38,26,56,.05)}
 .rv-card:before{content:'';position:absolute;z-index:-1;right:-60px;top:-60px;width:190px;height:190px;border-radius:50%;background:radial-gradient(circle,var(--orb,rgba(165,139,198,.45)),transparent 68%)}
-.rv-card:after{content:'C';position:absolute;right:22px;top:6px;font:400 96px/1 var(--serif);color:var(--orb-solid,rgba(75,51,112,.22));pointer-events:none}
+.rv-card:after{content:'“';position:absolute;right:22px;top:6px;font:400 96px/1 var(--serif);color:var(--orb-solid,rgba(75,51,112,.22));pointer-events:none}
 .rv-card.t-lav{--orb:rgba(165,139,198,.5);--orb-solid:rgba(75,51,112,.2)}
 .rv-card.t-peach{--orb:rgba(227,160,120,.5);--orb-solid:rgba(190,110,70,.28)}
 .rv-card.t-blush{--orb:rgba(226,140,165,.45);--orb-solid:rgba(190,80,120,.24)}
