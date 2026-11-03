@@ -831,3 +831,14 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .rv-head .eyebrow.rv-source:after{background:linear-gradient(270deg,transparent,rgba(38,26,56,.35))}
 .rv-source b{font-style:normal;font-weight:500;color:var(--grape-deep);letter-spacing:-.02em}
 @media(max-width:560px){.rv-head .eyebrow.rv-source{gap:12px;font-size:19px}}
+
+/* ---------- Navbar: a real bar with clear text links (no pill) ---------- */
+.site-header{background:rgba(245,240,231,.9);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(38,26,56,.12);box-shadow:0 10px 30px -24px rgba(38,26,56,.5)}
+.desktop-nav{gap:44px;padding:0;border-radius:0;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;margin-right:5%}
+.desktop-nav a{padding:12px 2px;border-radius:0;background:none;color:var(--ink);font-size:14px;font-weight:600;letter-spacing:1.6px}
+.desktop-nav a:after{display:block;left:0;right:100%;bottom:4px;height:2px;background:var(--grape)}
+.desktop-nav a:hover,.desktop-nav a[aria-current="page"]{background:none;color:var(--grape-deep)}
+.desktop-nav a:hover:after,.desktop-nav a[aria-current="page"]:after{right:0}
+.site-header .text-button{background:transparent}
+@media(max-width:900px){.desktop-nav{gap:28px;padding:0}.desktop-nav a{font-size:13px;padding:10px 2px}}
+@media(max-width:700px){.desktop-nav{gap:34px;margin:2px auto 0}.desktop-nav a{font-size:13px;padding:8px 2px}}
