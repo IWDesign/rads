@@ -834,7 +834,14 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 
 /* ---------- Navbar: a real bar with clear text links (no pill) ---------- */
 .site-header{background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .4s,border-color .4s,box-shadow .4s}
-.site-header.scrolled{background:rgba(245,240,231,.92);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(38,26,56,.12);box-shadow:0 10px 30px -24px rgba(38,26,56,.5)}
+.site-header.scrolled{background:rgba(245,240,231,.34);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.45);box-shadow:0 10px 30px -26px rgba(38,26,56,.5)}
+.site-header.scrolled.on-dark{background:rgba(38,26,56,.3);border-bottom-color:rgba(255,255,255,.16)}
+.site-header.on-dark .desktop-nav a,.site-header.on-dark .text-button{color:var(--ivory)}
+.site-header.on-dark .desktop-nav a:after{background:var(--ivory)}
+.site-header.on-dark .desktop-nav a:hover,.site-header.on-dark .desktop-nav a[aria-current="page"]{color:#fff}
+.site-header.on-dark .text-button{border-color:rgba(255,255,255,.6)}
+.site-header.on-dark .logo-mark{filter:brightness(0) invert(1)}
+.site-header .logo-mark{transition:filter .4s}
 .desktop-nav{gap:44px;padding:0;border-radius:0;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;margin-right:5%}
 .desktop-nav a{padding:12px 2px;border-radius:0;background:none;color:var(--ink);font-size:14px;font-weight:600;letter-spacing:1.6px}
 .desktop-nav a:after{display:block;left:0;right:100%;bottom:4px;height:2px;background:var(--grape)}

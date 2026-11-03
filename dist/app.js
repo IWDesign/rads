@@ -16,6 +16,10 @@ let scheduled = false;
 function updateScroll() {
   const y = window.scrollY;
   header.classList.toggle('scrolled', y > 150);
+  // over a dark section the frosted bar switches to light text
+  const hb = header.getBoundingClientRect().bottom;
+  const under = document.elementsFromPoint(innerWidth / 2, Math.min(hb + 4, innerHeight - 1)).find(el => !header.contains(el));
+  header.classList.toggle('on-dark', y > 150 && !!under?.closest('.dark-section'));
   // hero parallax now lives in motion.css/motion.js (lerped --progress)
   if (founderStack && !reducedMotion.matches) {
     const rect = founderStack.getBoundingClientRect();
