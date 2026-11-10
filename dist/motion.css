@@ -864,3 +864,16 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .hero.hero-split .hero-media{aspect-ratio:16/9.4;max-width:min(1180px,calc((100svh - 150px)*1.75));justify-self:end}
   .hero.hero-split .hero-copy{max-width:520px;justify-self:start}
 }
+
+/* ---------- Hero on phones and tablets: film first, then copy, full-width buttons ---------- */
+@media(max-width:900px){
+  .hero.hero-split{padding:112px 5% 44px;min-height:0;align-items:flex-start}
+  .hero.hero-split .hero-grid{grid-template-columns:1fr;gap:26px;max-width:620px}
+  .hero.hero-split .hero-media{order:1;width:100%;max-width:none;justify-self:stretch;aspect-ratio:4/3.1;border-radius:22px}
+  .hero.hero-split .hero-copy{order:2;max-width:none;justify-self:stretch}
+  .hero.hero-split h1{font-size:clamp(54px,15vw,84px);margin-bottom:18px}
+  .hero.hero-split .hero-lead{font-size:20px;line-height:1.45}
+  .hero.hero-split .hero-ctas{flex-direction:column;align-items:stretch;gap:14px}
+  .hero.hero-split .hero-ctas .light-button{width:100%;justify-content:space-between}
+  .hero.hero-split .hero-ctas .text-button{width:100%;text-align:center;padding:17px 20px}
+}
