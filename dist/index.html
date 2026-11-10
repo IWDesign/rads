@@ -9,14 +9,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@400;450;500;600&display=swap" rel="stylesheet">
 <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-split");setTimeout(function(){if(!document.documentElement.classList.contains("-loaded"))document.documentElement.classList.remove("js-split")},4500)}</script>
-<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="sections.css"><link rel="stylesheet" href="achievements.css?v=20261102-r3b"><link rel="stylesheet" href="motion.css?v=20261110-mobhero"><script src="app.js?v=20261103-nav3" defer></script><script src="motion.js" defer></script>
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="sections.css"><link rel="stylesheet" href="achievements.css?v=20261102-r3b"><link rel="stylesheet" href="motion.css?v=20261110-burger"><script src="app.js?v=20261110-burger" defer></script><script src="motion.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header" id="header">
  <a class="wordmark" href="#home" aria-label="RADS home"><span class="logo-mark" aria-hidden="true"></span><span class="sr-only">RADS by Nrityaritika</span></a>
  <nav class="desktop-nav" aria-label="Main navigation"><a href="disciplines.html">Dance Styles</a><a href="founder.html">Founder</a></nav>
- <div class="header-actions"><button class="text-button book-trigger">Find your first class</button></div>
+ <div class="header-actions"><button class="text-button book-trigger">Find your first class</button><button class="menu-trigger" aria-haspopup="dialog" aria-label="Open menu"><span class="menu-lines" aria-hidden="true"></span></button></div>
 </header>
 <main id="main">
  <section class="hero hero-split" id="home" data-progress="out" aria-labelledby="hero-title">
@@ -167,6 +167,7 @@
  </section>
  <footer class="footer"><div class="footer-top"><a class="wordmark" href="#home"><span class="logo-mark" aria-hidden="true"></span><span class="sr-only">RADS by Nrityaritika</span></a><p>Dance. Culture. Expression.</p><nav aria-label="Footer navigation"><a href="disciplines.html">Dance styles</a><a href="founder.html">Founder</a><button class="book-trigger">First class</button></nav></div><div class="footer-contact"><span class="eyebrow">GET IN TOUCH</span><a href="tel:+447587805868">+44 7587 805868</a><a href="mailto:Aroraritika0406@gmail.com">Aroraritika0406@gmail.com</a></div><div class="footer-bottom"><span>© <span id="year">2026</span> RADS by Nrityaritika</span><span>A SPACE TO BECOME.</span><a href="#home">Back to the beginning</a></div></footer>
 </main>
+<dialog id="menu-dialog" class="menu-dialog" aria-label="Menu"><div class="dialog-top"><span class="wordmark"><span class="logo-mark" aria-hidden="true"></span><span class="sr-only">RADS by Nrityaritika</span></span><button class="close-button" data-close aria-label="Close menu">Close <span aria-hidden="true">×</span></button></div><span class="eyebrow">RADS DANCE STUDIO</span><nav aria-label="Menu"><a href="index.html"><small>01</small>Home</a><a href="disciplines.html"><small>02</small>Dance Styles</a><a href="founder.html"><small>03</small>Founder</a><a href="index.html#private"><small>04</small>Private sessions</a><a href="index.html#love"><small>05</small>Reviews</a><button type="button" class="menu-cta" data-menu-book><small>06</small>First class</button></nav><div class="menu-footer">+44 7587 805868 &middot; Aroraritika0406@gmail.com</div></dialog>
 <dialog id="booking-dialog" class="booking-dialog" aria-labelledby="booking-title"><button class="close-button" data-close aria-label="Close class finder">Close <span aria-hidden="true">×</span></button><span class="eyebrow">YOUR FIRST STEP</span><h2 id="booking-title">Let's find<br><em>your rhythm.</em></h2><p class="booking-intro">Tell us what interests you and how to reach you, and we'll get back to arrange your first session.</p><form id="class-finder" name="class-enquiry" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="bot-field">
 <input type="hidden" name="form-name" value="class-enquiry">
 <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>

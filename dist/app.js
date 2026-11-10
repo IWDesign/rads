@@ -124,3 +124,16 @@ document.querySelectorAll('.rt[data-form]').forEach(tile => tile.addEventListene
   updateSelection();
   openDialog(bookingDialog, event.currentTarget);
 }));
+
+/* Mobile menu (hamburger) */
+(() => {
+  const trigger = document.querySelector('.menu-trigger');
+  const menu = document.querySelector('#menu-dialog');
+  if (!trigger || !menu) return;
+  trigger.addEventListener('click', event => openDialog(menu, event.currentTarget));
+  menu.querySelectorAll('nav a').forEach(link => link.addEventListener('click', () => menu.close()));
+  menu.querySelector('[data-menu-book]')?.addEventListener('click', () => {
+    menu.close();
+    document.querySelector('.site-header .book-trigger')?.click();
+  });
+})();

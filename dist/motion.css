@@ -877,3 +877,22 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .hero.hero-split .hero-ctas .light-button{width:100%;justify-content:space-between}
   .hero.hero-split .hero-ctas .text-button{width:100%;text-align:center;padding:17px 20px}
 }
+
+
+/* ---------- Hamburger menu (phones) ---------- */
+.menu-trigger{display:none;align-items:center;justify-content:center;width:46px;height:46px;padding:0;background:transparent;border-radius:50%;color:var(--ink)}
+.menu-trigger .menu-lines{width:28px;height:14px;border-top:2px solid currentColor;border-bottom:2px solid currentColor}
+.menu-trigger .menu-lines:after{top:4px;left:0;width:28px;border-top:2px solid currentColor}
+.site-header.on-dark .menu-trigger{color:var(--ivory)}
+.menu-dialog nav .menu-cta{font:clamp(35px,5.5vw,76px)/1.1 var(--serif);letter-spacing:-2px;position:relative;padding:5px 0;background:none;color:inherit;text-align:center}
+.menu-dialog nav .menu-cta small{font:10px var(--sans);letter-spacing:1px;position:absolute;left:-28px;top:15px;color:var(--lavender)}
+.menu-dialog nav .menu-cta:hover{color:var(--lavender)}
+.menu-dialog .menu-footer{margin-top:40px;text-align:center;font-size:11px;letter-spacing:1.4px;color:#cdbfe0}
+@media(max-width:700px){
+  .menu-trigger{display:flex}
+  .site-header{flex-wrap:nowrap;align-items:center;height:auto;padding:14px 5%}
+  .site-header .desktop-nav{display:none}
+  .site-header .header-actions>.text-button{display:none}
+  .menu-dialog nav .menu-cta{font-size:10.5vw;letter-spacing:-1px}
+  .menu-dialog nav .menu-cta small{font-size:9px;top:9px;left:-20px}
+}
