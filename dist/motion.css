@@ -852,9 +852,15 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 @media(max-width:700px){.desktop-nav{gap:34px;margin:2px auto 0}.desktop-nav a{font-size:13px;padding:8px 2px}}
 /* hero: larger video */
 @media(min-width:901px){
-  .hero-split{padding-left:4%;padding-right:4%}
-  .hero-grid{max-width:1640px;grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr);gap:clamp(32px,4.5vw,80px)}
-  .hero-split .hero-media{aspect-ratio:16/10.5;max-width:min(1040px,calc((100svh - 230px)*1.55));width:100%}
-  .hero-split .hero-copy{max-width:480px}
-  .hero-split h1{font-size:clamp(60px,6.4vw,104px)}
+  .hero.hero-split{padding-left:4%;padding-right:4%}
+  .hero.hero-split .hero-grid{max-width:1640px;grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr);gap:clamp(32px,4.5vw,80px)}
+  .hero.hero-split .hero-media{aspect-ratio:16/9.4;max-width:min(1180px,calc((100svh - 150px)*1.75));width:100%;justify-self:end}
+  .hero.hero-split .hero-copy{max-width:480px}
+  .hero.hero-split h1{font-size:clamp(64px,7.1vw,112px)}
+}
+/* hero v2: video fills its column, no empty gap before the text */
+@media(min-width:901px){
+  .hero.hero-split .hero-grid{grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:clamp(28px,3.4vw,64px)}
+  .hero.hero-split .hero-media{aspect-ratio:16/9.4;max-width:min(1180px,calc((100svh - 150px)*1.75));justify-self:end}
+  .hero.hero-split .hero-copy{max-width:520px;justify-self:start}
 }
