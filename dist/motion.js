@@ -297,6 +297,16 @@
   function rhythmApply() {
     const { e, s } = rhythm;
     rhythmTrack.style.setProperty('--e', e.toFixed(4));
+    const head = $('.rhythm-head', rhythmTrack);
+    const core = $('.rhythm-core', rhythmTrack);
+    head.style.opacity = clamp(1 - e * 2.4).toFixed(3);
+    head.style.translate = `0 ${(-36 * e).toFixed(1)}px`;
+    head.style.pointerEvents = e > .4 ? 'none' : '';
+    core.style.top = `${(46 * (1 - e)).toFixed(3)}vh`;
+    core.style.left = `${(31 * (1 - e)).toFixed(3)}vw`;
+    core.style.right = `${(26.4 * (1 - e)).toFixed(3)}vw`;
+    core.style.bottom = `${(14 * (1 - e)).toFixed(3)}vh`;
+    core.style.borderRadius = `${(8 * (1 - e)).toFixed(2)}px`;
     rhythmTrack.classList.toggle('-open', e > .25);
     $('.rhythm-mosaic', rhythmTrack).inert = e > .5;
     rhythm.panels.forEach((panel, k) => {
