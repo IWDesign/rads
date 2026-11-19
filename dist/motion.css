@@ -831,3 +831,68 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
 .rv-head .eyebrow.rv-source:after{background:linear-gradient(270deg,transparent,rgba(38,26,56,.35))}
 .rv-source b{font-style:normal;font-weight:500;color:var(--grape-deep);letter-spacing:-.02em}
 @media(max-width:560px){.rv-head .eyebrow.rv-source{gap:12px;font-size:19px}}
+
+/* ---------- Navbar: a real bar with clear text links (no pill) ---------- */
+.site-header{background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .4s,border-color .4s,box-shadow .4s}
+.site-header.scrolled{background:rgba(245,240,231,.34);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);border-bottom:1px solid rgba(255,255,255,.45);box-shadow:0 10px 30px -26px rgba(38,26,56,.5)}
+.site-header.scrolled.on-dark{background:rgba(38,26,56,.3);border-bottom-color:rgba(255,255,255,.16)}
+.site-header.on-dark .desktop-nav a,.site-header.on-dark .text-button{color:var(--ivory)}
+.site-header.on-dark .desktop-nav a:after{background:var(--ivory)}
+.site-header.on-dark .desktop-nav a:hover,.site-header.on-dark .desktop-nav a[aria-current="page"]{color:#fff}
+.site-header.on-dark .text-button{border-color:rgba(255,255,255,.6)}
+.site-header.on-dark .logo-mark{filter:brightness(0) invert(1)}
+.site-header .logo-mark{transition:filter .4s}
+.desktop-nav{gap:44px;padding:0;border-radius:0;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;margin-right:5%}
+.desktop-nav a{padding:12px 2px;border-radius:0;background:none;color:var(--ink);font-size:14px;font-weight:600;letter-spacing:1.6px}
+.desktop-nav a:after{display:block;left:0;right:100%;bottom:4px;height:2px;background:var(--grape)}
+.desktop-nav a:hover,.desktop-nav a[aria-current="page"]{background:none;color:var(--grape-deep)}
+.desktop-nav a:hover:after,.desktop-nav a[aria-current="page"]:after{right:0}
+.site-header .text-button{background:transparent}
+@media(max-width:900px){.desktop-nav{gap:28px;padding:0}.desktop-nav a{font-size:13px;padding:10px 2px}}
+@media(max-width:700px){.desktop-nav{gap:34px;margin:2px auto 0}.desktop-nav a{font-size:13px;padding:8px 2px}}
+/* hero: larger video */
+@media(min-width:901px){
+  .hero.hero-split{padding-left:4%;padding-right:4%}
+  .hero.hero-split .hero-grid{max-width:1640px;grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr);gap:clamp(32px,4.5vw,80px)}
+  .hero.hero-split .hero-media{aspect-ratio:16/9.4;max-width:min(1180px,calc((100svh - 150px)*1.75));width:100%;justify-self:end}
+  .hero.hero-split .hero-copy{max-width:480px}
+  .hero.hero-split h1{font-size:clamp(64px,7.1vw,112px)}
+}
+/* hero v2: video fills its column, no empty gap before the text */
+@media(min-width:901px){
+  .hero.hero-split .hero-grid{grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:clamp(28px,3.4vw,64px)}
+  .hero.hero-split .hero-media{aspect-ratio:16/9.4;max-width:min(1180px,calc((100svh - 150px)*1.75));justify-self:end}
+  .hero.hero-split .hero-copy{max-width:520px;justify-self:start}
+}
+
+/* ---------- Hero on phones and tablets: film first, then copy, full-width buttons ---------- */
+@media(max-width:900px){
+  .hero.hero-split{padding:112px 5% 44px;min-height:0;align-items:flex-start}
+  .hero.hero-split .hero-grid{grid-template-columns:1fr;gap:26px;max-width:620px}
+  .hero.hero-split .hero-media{order:1;width:100%;max-width:none;justify-self:stretch;aspect-ratio:4/3.1;border-radius:22px}
+  .hero.hero-split .hero-copy{order:2;max-width:none;justify-self:stretch}
+  .hero.hero-split h1{font-size:clamp(54px,15vw,84px);margin-bottom:18px}
+  .hero.hero-split .hero-lead{font-size:20px;line-height:1.45}
+  .hero.hero-split .hero-ctas{flex-direction:column;align-items:stretch;gap:14px}
+  .hero.hero-split .hero-ctas .light-button{width:100%;justify-content:space-between}
+  .hero.hero-split .hero-ctas .text-button{width:100%;text-align:center;padding:17px 20px}
+}
+
+
+/* ---------- Hamburger menu (phones) ---------- */
+.menu-trigger{display:none;align-items:center;justify-content:center;width:46px;height:46px;padding:0;background:transparent;border-radius:50%;color:var(--ink)}
+.menu-trigger .menu-lines{width:28px;height:14px;border-top:2px solid currentColor;border-bottom:2px solid currentColor}
+.menu-trigger .menu-lines:after{top:4px;left:0;width:28px;border-top:2px solid currentColor}
+.site-header.on-dark .menu-trigger{color:var(--ivory)}
+.menu-dialog nav .menu-cta{font:clamp(35px,5.5vw,76px)/1.1 var(--serif);letter-spacing:-2px;position:relative;padding:5px 0;background:none;color:inherit;text-align:center}
+.menu-dialog nav .menu-cta small{font:10px var(--sans);letter-spacing:1px;position:absolute;left:-28px;top:15px;color:var(--lavender)}
+.menu-dialog nav .menu-cta:hover{color:var(--lavender)}
+.menu-dialog .menu-footer{margin-top:40px;text-align:center;font-size:11px;letter-spacing:1.4px;color:#cdbfe0}
+@media(max-width:700px){
+  .menu-trigger{display:flex}
+  .site-header{flex-wrap:nowrap;align-items:center;height:auto;padding:14px 5%}
+  .site-header .desktop-nav{display:none}
+  .site-header .header-actions>.text-button{display:none}
+  .menu-dialog nav .menu-cta{font-size:10.5vw;letter-spacing:-1px}
+  .menu-dialog nav .menu-cta small{font-size:9px;top:9px;left:-20px}
+}

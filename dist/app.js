@@ -16,6 +16,10 @@ let scheduled = false;
 function updateScroll() {
   const y = window.scrollY;
   header.classList.toggle('scrolled', y > 150);
+  // over a dark section the frosted bar switches to light text
+  const hb = header.getBoundingClientRect().bottom;
+  const under = document.elementsFromPoint(innerWidth / 2, Math.min(hb + 4, innerHeight - 1)).find(el => !header.contains(el));
+  header.classList.toggle('on-dark', y > 150 && !!under?.closest('.dark-section'));
   // hero parallax now lives in motion.css/motion.js (lerped --progress)
   if (founderStack && !reducedMotion.matches) {
     const rect = founderStack.getBoundingClientRect();
@@ -120,3 +124,16 @@ document.querySelectorAll('.rt[data-form]').forEach(tile => tile.addEventListene
   updateSelection();
   openDialog(bookingDialog, event.currentTarget);
 }));
+
+/* Mobile menu (hamburger) */
+(() => {
+  const trigger = document.querySelector('.menu-trigger');
+  const menu = document.querySelector('#menu-dialog');
+  if (!trigger || !menu) return;
+  trigger.addEventListener('click', event => openDialog(menu, event.currentTarget));
+  menu.querySelectorAll('nav a').forEach(link => link.addEventListener('click', () => menu.close()));
+  menu.querySelector('[data-menu-book]')?.addEventListener('click', () => {
+    menu.close();
+    document.querySelector('.site-header .book-trigger')?.click();
+  });
+})();
