@@ -236,10 +236,9 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .js-split .rhythm{padding:0}
   .js-split .rhythm-track{--e:0;height:900vh;position:relative}
   .js-split .rhythm-stage{position:sticky;top:0;height:100vh;overflow:hidden}
-  .js-split .rhythm-head{position:absolute;z-index:6;left:31vw;top:12vh;width:30vw;padding:0;text-align:left;
-    opacity:calc(1 - var(--e)*1.6);translate:0 calc(var(--e)*-40px)}
-  .js-split .rhythm-head .grand-title{font-size:clamp(44px,5.4vw,92px);line-height:.92;margin:16px 0 14px;text-align:left}
-  .js-split .rhythm-sub{max-width:300px}
+  .js-split .rhythm-head{position:absolute;z-index:6;left:31vw;top:8vh;width:42vw;padding:0;text-align:left;opacity:1}
+  .js-split .rhythm-head .grand-title{font-size:clamp(48px,4.7vw,74px);line-height:.92;margin:16px 0 14px;text-align:left}
+  .js-split .rhythm-sub{max-width:340px}
   .js-split .rhythm-mosaic{display:block;padding:0;max-width:none;margin:0}
   .js-split .rt{position:absolute;aspect-ratio:auto;border-radius:6px;
     opacity:calc(1 - var(--e)*1.35);translate:calc(var(--dx,0vw)*var(--e)) calc(var(--dy,0vh)*var(--e));scale:calc(1 - var(--e)*.07)}
@@ -254,8 +253,7 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .js-split .rt-label{left:12px;bottom:14px;font-size:10px}
 
   .js-split .rhythm-core{display:block;padding:0;position:absolute;z-index:3;overflow:hidden;
-    top:calc(38vh*(1 - var(--e)));left:calc(31vw*(1 - var(--e)));right:calc(26.4vw*(1 - var(--e)));bottom:calc(26vh*(1 - var(--e)));
-    border-radius:calc(8px*(1 - var(--e)))}
+    top:46vh;left:31vw;right:26.4vw;bottom:14vh;border-radius:8px}
   .js-split .rp{position:absolute;inset:0;display:block;clip-path:inset(calc((1 - var(--r,1))*100%) 0 0 0)}
   .js-split .rp-img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;border-radius:0;scale:calc(1.18 - var(--e)*.1)}
   .js-split .rp-shade{display:block;position:absolute;inset:0;
