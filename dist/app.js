@@ -113,6 +113,26 @@ document.querySelectorAll('[data-film]').forEach(button => button.addEventListen
   openDialog(filmDialog, event.currentTarget);
 }));
 filmDialog?.addEventListener('close', () => { filmVideo.pause(); filmVideo.removeAttribute('src'); filmVideo.load(); });
+const reelDialog = document.querySelector('#reel-dialog');
+const reelPlayer = document.querySelector('#reel-player');
+const reelGallery = document.querySelector('.founder-reels');
+document.querySelectorAll('.fr-open').forEach(button => button.addEventListener('click', () => {
+  const card = button.closest('.fr-card');
+  const preview = card.querySelector('video');
+  document.querySelector('#reel-dialog-title').textContent = card.querySelector('figcaption').lastChild.textContent.trim();
+  reelPlayer.src = preview.getAttribute('src') + '?v=20261119-audio';
+  reelPlayer.poster = preview.getAttribute('poster');
+  reelPlayer.muted = false;
+  reelGallery.classList.add('reel-open');
+  openDialog(reelDialog, button.closest('.fr-set[aria-hidden]') ? reelGallery.querySelector('.fr-window') : button);
+  reelPlayer.play().catch(() => {});
+}));
+reelDialog?.addEventListener('close', () => {
+  reelPlayer.pause();
+  reelPlayer.removeAttribute('src');
+  reelPlayer.load();
+  reelGallery.classList.remove('reel-open');
+});
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo && reducedMotion.matches) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
 document.querySelector('#year').textContent = new Date().getFullYear();
@@ -137,3 +157,15 @@ document.querySelectorAll('.rt[data-form]').forEach(tile => tile.addEventListene
     document.querySelector('.site-header .book-trigger')?.click();
   });
 })();
+
+/* Keep the founder gallery moving only while it is near the viewport. */
+const founderReels = document.querySelector('.founder-reels');
+if (founderReels) {
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      founderReels.classList.toggle('is-visible', entries[0].isIntersecting);
+    }, { rootMargin: '120px 0px' }).observe(founderReels);
+  } else {
+    founderReels.classList.add('is-visible');
+  }
+}
