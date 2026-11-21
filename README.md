@@ -36,13 +36,7 @@ Insert `<img>` or `<video>` within the corresponding slot, keep its reserved dim
 
 The class finder sends `POST /api/enquiry` from all three pages. The Cloudflare handler validates the form and stores accepted enquiries in a D1 database bound as `ENQUIRIES_DB`. It returns success only after the insert succeeds. Submissions can be viewed in the Cloudflare D1 dashboard by querying the `enquiries` table; email notifications are not configured.
 
-For the existing **Worker with static assets** deployment:
-
-1. Create a D1 database named `rads-enquiries` in the same Cloudflare account and copy its database ID.
-2. Copy `wrangler.worker.example.jsonc` to `wrangler.jsonc` and replace `REPLACE_WITH_D1_DATABASE_ID` with that ID. Keep the existing Worker name if it differs from `rads`.
-3. Apply `migrations/0001_enquiries.sql` to the database (Cloudflare D1 console, or `npx wrangler d1 migrations apply rads-enquiries --remote`).
-4. Deploy with the new Wrangler configuration so the Worker serves `dist/` and handles `/api/enquiry` with the D1 binding.
-5. Send a test enquiry through the live form and confirm it appears in D1. A successful static deployment alone does not verify the form.
+For the existing **Worker with static assets** deployment, `wrangler.jsonc` serves `dist/`, handles `/api/enquiry`, and binds the production `rads-enquiries` D1 database. The schema in `migrations/0001_enquiries.sql` was applied through the Cloudflare D1 console. Future schema changes should use a new migration and be applied before deploying code that needs them. Send a test enquiry through the live form and confirm it appears in D1; a successful static deployment alone does not verify the form.
 
 If this is a **Cloudflare Pages** project instead, deploy the root `functions/api/enquiry.js` file with `dist/` as the build output directory, add a production D1 binding named `ENQUIRIES_DB`, apply the same migration, and test the live form. The Pages Function and Worker use the same handler.
 

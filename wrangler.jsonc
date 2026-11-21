@@ -11,7 +11,7 @@
     {
       "binding": "ENQUIRIES_DB",
       "database_name": "rads-enquiries",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+      "database_id": "0cff5a0e-2b13-4d77-9357-6022311a45b2"
     }
   ]
 }
