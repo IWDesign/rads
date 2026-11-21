@@ -32,9 +32,13 @@ All image and video areas are intentional placeholders, labelled visibly and ide
 
 Insert `<img>` or `<video>` within the corresponding slot, keep its reserved dimensions, use `object-fit: cover`, add accurate alternative text, and remove the visible placeholder labels once media is provided. Media previews currently open a labelled placeholder dialog, not a simulated player.
 
-## Booking
+## Booking on Cloudflare
 
-The class finder is a Netlify form (`class-enquiry`): it collects name, email, optional phone and message plus the chosen goal and style, and posts to Netlify Forms. Enquiries appear in the Netlify dashboard under Forms.
+The class finder sends `POST /api/enquiry` from all three pages. The Cloudflare handler validates the form and stores accepted enquiries in a D1 database bound as `ENQUIRIES_DB`. It returns success only after the insert succeeds. Submissions can be viewed in the Cloudflare D1 dashboard by querying the `enquiries` table; email notifications are not configured.
+
+For the existing **Worker with static assets** deployment, `wrangler.jsonc` serves `dist/`, handles `/api/enquiry`, and binds the production `rads-enquiries` D1 database. The schema in `migrations/0001_enquiries.sql` was applied through the Cloudflare D1 console. Future schema changes should use a new migration and be applied before deploying code that needs them. Send a test enquiry through the live form and confirm it appears in D1; a successful static deployment alone does not verify the form.
+
+If this is a **Cloudflare Pages** project instead, deploy the root `functions/api/enquiry.js` file with `dist/` as the build output directory, add a production D1 binding named `ENQUIRIES_DB`, apply the same migration, and test the live form. The Pages Function and Worker use the same handler.
 
 ## Accessibility and motion
 

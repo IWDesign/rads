@@ -1,0 +1,17 @@
+{
+  "name": "rads",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2026-11-21",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "ENQUIRIES_DB",
+      "database_name": "rads-enquiries",
+      "database_id": "0cff5a0e-2b13-4d77-9357-6022311a45b2"
+    }
+  ]
+}

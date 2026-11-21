@@ -85,7 +85,7 @@ classFinder.addEventListener('submit', async event => {
   send.disabled = true;
   status.textContent = 'Sending\u2026';
   try {
-    const response = await fetch('/', {
+    const response = await fetch('/api/enquiry', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(new FormData(classFinder)).toString()
