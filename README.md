@@ -32,9 +32,19 @@ All image and video areas are intentional placeholders, labelled visibly and ide
 
 Insert `<img>` or `<video>` within the corresponding slot, keep its reserved dimensions, use `object-fit: cover`, add accurate alternative text, and remove the visible placeholder labels once media is provided. Media previews currently open a labelled placeholder dialog, not a simulated player.
 
-## Booking
+## Booking on Cloudflare
 
-The class finder is a Netlify form (`class-enquiry`): it collects name, email, optional phone and message plus the chosen goal and style, and posts to Netlify Forms. Enquiries appear in the Netlify dashboard under Forms.
+The class finder sends `POST /api/enquiry` from all three pages. The Cloudflare handler validates the form and stores accepted enquiries in a D1 database bound as `ENQUIRIES_DB`. It returns success only after the insert succeeds. Submissions can be viewed in the Cloudflare D1 dashboard by querying the `enquiries` table; email notifications are not configured.
+
+For the existing **Worker with static assets** deployment:
+
+1. Create a D1 database named `rads-enquiries` in the same Cloudflare account and copy its database ID.
+2. Copy `wrangler.worker.example.jsonc` to `wrangler.jsonc` and replace `REPLACE_WITH_D1_DATABASE_ID` with that ID. Keep the existing Worker name if it differs from `rads`.
+3. Apply `migrations/0001_enquiries.sql` to the database (Cloudflare D1 console, or `npx wrangler d1 migrations apply rads-enquiries --remote`).
+4. Deploy with the new Wrangler configuration so the Worker serves `dist/` and handles `/api/enquiry` with the D1 binding.
+5. Send a test enquiry through the live form and confirm it appears in D1. A successful static deployment alone does not verify the form.
+
+If this is a **Cloudflare Pages** project instead, deploy the root `functions/api/enquiry.js` file with `dist/` as the build output directory, add a production D1 binding named `ENQUIRIES_DB`, apply the same migration, and test the live form. The Pages Function and Worker use the same handler.
 
 ## Accessibility and motion
 
