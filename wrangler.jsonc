@@ -7,6 +7,10 @@
     "binding": "ASSETS",
     "run_worker_first": ["/api/*"]
   },
+  "vars": {
+    "LEAD_EMAIL_TO": "Aroraritika0406@gmail.com",
+    "LEAD_EMAIL_FROM": "RADS <leads@send.nrityaritika.com>"
+  },
   "d1_databases": [
     {
       "binding": "ENQUIRIES_DB",

@@ -34,7 +34,9 @@ Insert `<img>` or `<video>` within the corresponding slot, keep its reserved dim
 
 ## Booking on Cloudflare
 
-The class finder sends `POST /api/enquiry` from all three pages. The Cloudflare handler validates the form and stores accepted enquiries in a D1 database bound as `ENQUIRIES_DB`. It returns success only after the insert succeeds. Submissions can be viewed in the Cloudflare D1 dashboard by querying the `enquiries` table; email notifications are not configured.
+The class finder sends `POST /api/enquiry` from all three pages. The Cloudflare handler validates the form and stores accepted enquiries in a D1 database bound as `ENQUIRIES_DB`. It returns success only after the insert succeeds. Submissions can be viewed in the Cloudflare D1 dashboard by querying the `enquiries` table.
+
+After saving a lead, the handler sends a plain-text notification through Resend with the visitor's address as Reply-To. `wrangler.jsonc` sets the recipient to `Aroraritika0406@gmail.com` and the sender to `RADS <leads@send.nrityaritika.com>`. Verify `send.nrityaritika.com` in Resend, and add `RESEND_API_KEY` as a Cloudflare Worker secret (use a sending-only key restricted to that domain). Never commit the API key. If Resend is unavailable, the visitor still gets a successful response because the lead remains in D1; the Worker logs the failed notification with the enquiry ID for follow-up.
 
 For the existing **Worker with static assets** deployment, `wrangler.jsonc` serves `dist/`, handles `/api/enquiry`, and binds the production `rads-enquiries` D1 database. The schema in `migrations/0001_enquiries.sql` was applied through the Cloudflare D1 console. Future schema changes should use a new migration and be applied before deploying code that needs them. Send a test enquiry through the live form and confirm it appears in D1; a successful static deployment alone does not verify the form.
 

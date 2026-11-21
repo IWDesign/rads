@@ -1,3 +1,5 @@
+import { sendLeadEmail } from './lead-email.mjs';
+
 const MAX_BODY_LENGTH = 16_384;
 const text = (value, max) => String(value ?? '').trim().slice(0, max + 1);
 
@@ -8,7 +10,7 @@ function response(message, status) {
   });
 }
 
-export async function handleEnquiry(request, env) {
+export async function handleEnquiry(request, env, notify = sendLeadEmail) {
   if (request.method !== 'POST') return response('Method not allowed.', 405);
 
   const origin = request.headers.get('Origin');
@@ -45,14 +47,25 @@ export async function handleEnquiry(request, env) {
     return response('Enquiries are temporarily unavailable.', 503);
   }
 
+  const lead = {
+    id: crypto.randomUUID(), createdAt: new Date().toISOString(),
+    name, email, phone, goal, style, message
+  };
+
   try {
     const result = await env.ENQUIRIES_DB.prepare(
       'INSERT INTO enquiries (id, created_at, name, email, phone, goal, style, message) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
-    ).bind(crypto.randomUUID(), new Date().toISOString(), name, email, phone, goal, style, message).run();
+    ).bind(lead.id, lead.createdAt, name, email, phone, goal, style, message).run();
     if (result.success === false) throw new Error('D1 insert failed');
-    return response('Thank you. Your enquiry was received.', 200);
   } catch (error) {
     console.error('Failed to save enquiry', error);
     return response('Your enquiry could not be saved. Please try again.', 500);
   }
+
+  try {
+    await notify(lead, env);
+  } catch (error) {
+    console.error(`Lead ${lead.id} was saved but email notification failed`, error);
+  }
+  return response('Thank you. Your enquiry was received.', 200);
 }
