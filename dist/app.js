@@ -79,7 +79,7 @@ style.addEventListener('change', updateSelection);
 const classFinder = document.querySelector('#class-finder');
 
 // Cloudflare Turnstile bot check. Paste the public site key here to switch it on.
-const TURNSTILE_SITE_KEY = '';
+const TURNSTILE_SITE_KEY = '0x4AAAAAAGT4Gm9wFZRkXVJ1';
 let turnstileId = null;
 let turnstileRequested = false;
 function loadTurnstile() {
