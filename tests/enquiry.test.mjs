@@ -122,3 +122,46 @@ test('rejects posts that send no origin', async () => {
   const result = await handleEnquiry(request, {});
   assert.equal(result.status, 403);
 });
+
+const savingEnv = (extra = {}) => {
+  const state = { saved: false };
+  state.env = { ENQUIRIES_DB: { prepare() { return { bind() { return { run: async () => { state.saved = true; return { success: true }; } }; } }; } }, ...extra };
+  return state;
+};
+
+test('requires a Turnstile token once the secret is set', async () => {
+  const state = savingEnv({ TURNSTILE_SECRET_KEY: 'test-secret' });
+  const result = await handleEnquiry(submission(), state.env, async () => {});
+  assert.equal(result.status, 400);
+  assert.equal(state.saved, false);
+});
+
+test('rejects a Turnstile token that fails verification', async () => {
+  const state = savingEnv({ TURNSTILE_SECRET_KEY: 'test-secret' });
+  const result = await handleEnquiry(submission({ 'cf-turnstile-response': 'bad' }), state.env, async () => {}, async () => Response.json({ success: false }));
+  assert.equal(result.status, 400);
+  assert.equal(state.saved, false);
+});
+
+test('saves an enquiry with a verified Turnstile token', async () => {
+  const state = savingEnv({ TURNSTILE_SECRET_KEY: 'test-secret' });
+  let sent;
+  const result = await handleEnquiry(submission({ 'cf-turnstile-response': 'good' }), state.env, async () => {}, async (url, options) => { sent = options.body; return Response.json({ success: true }); });
+  assert.equal(result.status, 200);
+  assert.equal(state.saved, true);
+  assert.equal(sent.get('secret'), 'test-secret');
+  assert.equal(sent.get('response'), 'good');
+});
+
+test('does not save when Turnstile cannot be reached', async () => {
+  const state = savingEnv({ TURNSTILE_SECRET_KEY: 'test-secret' });
+  const originalError = console.error;
+  console.error = () => {};
+  try {
+    const result = await handleEnquiry(submission({ 'cf-turnstile-response': 'good' }), state.env, async () => {}, async () => { throw new Error('down'); });
+    assert.equal(result.status, 503);
+    assert.equal(state.saved, false);
+  } finally {
+    console.error = originalError;
+  }
+});

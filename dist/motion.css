@@ -934,3 +934,5 @@ body::before{content:'';position:fixed;inset:-15%;z-index:-1;pointer-events:none
   .fr-track{animation:none;will-change:auto}
   .fr-set[aria-hidden]{display:none}
 }
+
+.booking-dialog .turnstile-box{margin:0 0 18px;min-height:65px}

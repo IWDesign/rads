@@ -77,11 +77,38 @@ document.querySelectorAll('.price-marquee').forEach(el => el.addEventListener('k
 goal.addEventListener('change', updateSelection);
 style.addEventListener('change', updateSelection);
 const classFinder = document.querySelector('#class-finder');
+
+// Cloudflare Turnstile bot check. Paste the public site key here to switch it on.
+const TURNSTILE_SITE_KEY = '';
+let turnstileId = null;
+let turnstileRequested = false;
+function loadTurnstile() {
+  if (!TURNSTILE_SITE_KEY || turnstileRequested) return;
+  turnstileRequested = true;
+  const box = document.createElement('div');
+  box.className = 'turnstile-box';
+  classFinder.querySelector('[type="submit"]').before(box);
+  const script = document.createElement('script');
+  script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+  script.async = true;
+  script.onload = () => { turnstileId = window.turnstile.render(box, { sitekey: TURNSTILE_SITE_KEY, theme: 'light', size: 'flexible' }); };
+  script.onerror = () => { turnstileRequested = false; box.remove(); script.remove(); };
+  document.head.append(script);
+}
+// each token works once, so ask for a fresh one after every attempt
+function resetTurnstile() { if (turnstileId !== null) window.turnstile.reset(turnstileId); }
+document.querySelectorAll('.book-trigger, [data-goal], [data-style]').forEach(button => button.addEventListener('click', loadTurnstile));
+
 classFinder.addEventListener('submit', async event => {
   event.preventDefault();
   if (classFinder.elements['bot-field'].value) return; // honeypot: bots fill this in
   const status = classFinder.querySelector('.form-status');
   const send = classFinder.querySelector('[type="submit"]');
+  if (TURNSTILE_SITE_KEY && !new FormData(classFinder).get('cf-turnstile-response')) {
+    loadTurnstile();
+    status.textContent = 'Please wait for the verification check above, then send again. If it does not appear, call or email us.';
+    return;
+  }
   send.disabled = true;
   status.textContent = 'Sending\u2026';
   try {
@@ -94,15 +121,18 @@ classFinder.addEventListener('submit', async event => {
       const reply = await response.json().catch(() => ({}));
       send.disabled = false;
       status.textContent = reply.message || 'Please check your details and try again.';
+      resetTurnstile();
       return;
     }
     if (!response.ok) throw new Error('Request failed: ' + response.status);
     status.textContent = '';
+    resetTurnstile();
     classFinder.classList.add('is-sent');
     classFinder.querySelector('.form-success').focus();
   } catch (error) {
     send.disabled = false;
     status.textContent = 'Sorry, that did not send. Please check your connection and try again.';
+    resetTurnstile();
   }
 });
 bookingDialog.addEventListener('close', () => {

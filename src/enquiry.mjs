@@ -1,6 +1,7 @@
 import { sendLeadEmail } from './lead-email.mjs';
 
 const MAX_BODY_LENGTH = 16_384;
+const VERIFY_ENDPOINT = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 const text = (value, max) => String(value ?? '').trim().slice(0, max + 1);
 
 // A class enquiry has no reason to carry a web link; every spam run so far does.
@@ -15,7 +16,16 @@ function response(message, status) {
   });
 }
 
-export async function handleEnquiry(request, env, notify = sendLeadEmail) {
+async function verifyTurnstile(token, request, secret, fetcher) {
+  const body = new URLSearchParams({ secret, response: token });
+  const ip = request.headers.get('CF-Connecting-IP');
+  if (ip) body.set('remoteip', ip);
+  const result = await fetcher(VERIFY_ENDPOINT, { method: 'POST', body });
+  if (!result.ok) throw new Error(`Turnstile verification unavailable (${result.status})`);
+  return (await result.json()).success === true;
+}
+
+export async function handleEnquiry(request, env, notify = sendLeadEmail, fetcher = fetch) {
   if (request.method !== 'POST') return response('Method not allowed.', 405);
 
   const origin = request.headers.get('Origin');
@@ -50,6 +60,18 @@ export async function handleEnquiry(request, env, notify = sendLeadEmail) {
   }
   if ([name, phone, goal, style, message].some(containsLink)) {
     return response('Please remove web links from your message and send it again.', 400);
+  }
+  // Bot check, enforced once the secret is configured on the Worker.
+  if (env.TURNSTILE_SECRET_KEY) {
+    const failed = 'Please complete the verification check and send again.';
+    const token = form.get('cf-turnstile-response');
+    if (!token || token.length > 2048) return response(failed, 400);
+    try {
+      if (!await verifyTurnstile(token, request, env.TURNSTILE_SECRET_KEY, fetcher)) return response(failed, 400);
+    } catch (error) {
+      console.error('Failed to verify Turnstile token', error);
+      return response('Enquiries are temporarily unavailable.', 503);
+    }
   }
   if (!env.ENQUIRIES_DB) {
     console.error('Missing ENQUIRIES_DB binding');
