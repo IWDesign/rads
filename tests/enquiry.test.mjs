@@ -92,3 +92,33 @@ test('rejects posts from another origin', async () => {
   const result = await handleEnquiry(request, {});
   assert.equal(result.status, 403);
 });
+
+test('rejects link spam without writing or emailing', async () => {
+  let touched = false;
+  const env = { ENQUIRIES_DB: { prepare() { touched = true; throw new Error('should not write'); } } };
+  const samples = [
+    { message: 'Read the news and earn $50,000,000 per month special $>$>$>$> https://tau.lu/f3b342394' },
+    { message: 'earn now https://myip.kr/ZxBnL' },
+    { message: 'visit tau.lu/f3b342394 today' },
+    { message: 'go to www.example-offers' },
+    { name: 'Buy at cheap-deals.xyz' }
+  ];
+  for (const fields of samples) {
+    const result = await handleEnquiry(submission(fields), env, async () => { touched = true; });
+    assert.equal(result.status, 400, JSON.stringify(fields));
+  }
+  assert.equal(touched, false);
+});
+
+test('keeps normal messages that mention an email address or times', async () => {
+  const env = { ENQUIRIES_DB: { prepare() { return { bind() { return { run: async () => ({ success: true }) }; } }; } } };
+  const result = await handleEnquiry(submission({ name: 'Dr. A. J. Smith', message: 'Reach me at sam@gmail.com. I am free Sat.Sun after 5.30 p.m.' }), env, async () => {});
+  assert.equal(result.status, 200);
+});
+
+test('rejects posts that send no origin', async () => {
+  const request = submission();
+  request.headers.delete('Origin');
+  const result = await handleEnquiry(request, {});
+  assert.equal(result.status, 403);
+});

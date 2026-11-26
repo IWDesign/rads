@@ -90,6 +90,12 @@ classFinder.addEventListener('submit', async event => {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(new FormData(classFinder)).toString()
     });
+    if (response.status === 400) {
+      const reply = await response.json().catch(() => ({}));
+      send.disabled = false;
+      status.textContent = reply.message || 'Please check your details and try again.';
+      return;
+    }
     if (!response.ok) throw new Error('Request failed: ' + response.status);
     status.textContent = '';
     classFinder.classList.add('is-sent');

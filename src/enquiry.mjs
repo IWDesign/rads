@@ -3,6 +3,11 @@ import { sendLeadEmail } from './lead-email.mjs';
 const MAX_BODY_LENGTH = 16_384;
 const text = (value, max) => String(value ?? '').trim().slice(0, max + 1);
 
+// A class enquiry has no reason to carry a web link; every spam run so far does.
+const EMAIL_PATTERN = /[^\s@]+@[^\s@]+\.[a-z]{2,}/gi;
+const LINK_PATTERN = /https?:|\bwww\.|\[url|<a\s|\b[a-z0-9-]+\.[a-z]{2,}\/|\b[a-z0-9-]{2,}\.(?:com|net|org|ru|lu|kr|xyz|top|info|biz|online|site|shop|click|link|icu)\b/i;
+const containsLink = value => LINK_PATTERN.test(value.replace(EMAIL_PATTERN, ' '));
+
 function response(message, status) {
   return Response.json({ message }, {
     status,
@@ -14,7 +19,8 @@ export async function handleEnquiry(request, env, notify = sendLeadEmail) {
   if (request.method !== 'POST') return response('Method not allowed.', 405);
 
   const origin = request.headers.get('Origin');
-  if (origin && origin !== new URL(request.url).origin) {
+  // Browsers always send Origin on a form POST; scripts that skip it are turned away.
+  if (origin !== new URL(request.url).origin) {
     return response('Invalid origin.', 403);
   }
   if (!request.headers.get('Content-Type')?.toLowerCase().startsWith('application/x-www-form-urlencoded')) {
@@ -41,6 +47,9 @@ export async function handleEnquiry(request, env, notify = sendLeadEmail) {
       phone.length > 50 || goal.length > 120 || style.length > 120 ||
       message.length > 2000) {
     return response('Please check your details and try again.', 400);
+  }
+  if ([name, phone, goal, style, message].some(containsLink)) {
+    return response('Please remove web links from your message and send it again.', 400);
   }
   if (!env.ENQUIRIES_DB) {
     console.error('Missing ENQUIRIES_DB binding');
